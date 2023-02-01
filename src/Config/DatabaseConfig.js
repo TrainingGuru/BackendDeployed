@@ -15,5 +15,6 @@ const database = new Sequelize('TrainingGuru', 'root', 'root', {
 });
 
 
+
 module.exports = database;
 
