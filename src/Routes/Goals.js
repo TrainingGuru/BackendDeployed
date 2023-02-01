@@ -6,6 +6,8 @@ const router = express.Router();
 
 //GetAllTrainers
 router.get("/:clientId",goalController.getAllGoalsForClient)
+router.post("/:clientId",goalController.CreateGoalForClient)
+
 
 
 
