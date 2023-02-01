@@ -50,19 +50,32 @@ const UpdateGoalForClient = async (req,res) => {
         }
     }).then(goalToUpdate => {
         if(!goalToUpdate){
-            res.status(404).json("No Client Workout Found")
+            res.status(404).json("No Client Goal Found")
         }else{
             goalToUpdate.update({
                 Goal: req.body.Goal
             });
-            res.status(201).json("Goal Updated");
+            res.status(201).json(goalToUpdate);
         }
     })
 
 }
 
 const DeleteGoalForClient = async (req,res) => {
-//TODO:IMPLEMENT ENDPOINT
+    Goals.findOne({
+        where : {
+            ClientID : req.params.clientId,
+            GoalID : req.params.goalId,
+        }
+    }).then(goalToDelete => {
+        if(!goalToDelete){
+            res.status(404).json("No Client Workout Found")
+        }else{
+            goalToDelete.destroy();
+            res.status(204).json("Goal Deleted");
+        }
+    })
+
 }
 
 
@@ -71,6 +84,6 @@ module.exports = {
 
     getAllGoalsForClient,
     CreateGoalForClient,
-    UpdateGoalForClient
-
+    UpdateGoalForClient,
+    DeleteGoalForClient
 }
