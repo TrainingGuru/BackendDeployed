@@ -69,7 +69,7 @@ const DeleteGoalForClient = async (req,res) => {
         }
     }).then(goalToDelete => {
         if(!goalToDelete){
-            res.status(404).json("No Client Workout Found")
+            res.status(404).json("No Client Goal Found")
         }else{
             goalToDelete.destroy();
             res.status(204);
