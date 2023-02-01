@@ -1,4 +1,4 @@
-const {Sequelize} = require("sequelize");
+//const {Sequelize} = require("sequelize");
 
 const Goals = require("../Models/GoalsModel");
 const Client = require("../Models/ClientModel");
@@ -43,7 +43,22 @@ const CreateGoalForClient = async (req,res) => {
 }
 
 const UpdateGoalForClient = async (req,res) => {
-//TODO:IMPLEMENT ENDPOINT
+    Goals.findOne({
+        where : {
+            ClientID : req.params.clientId,
+            GoalID : req.params.goalId,
+        }
+    }).then(goalToUpdate => {
+        if(!goalToUpdate){
+            res.status(404).json("No Client Workout Found")
+        }else{
+            goalToUpdate.update({
+                Goal: req.body.Goal
+            });
+            res.status(201).json("Goal Updated");
+        }
+    })
+
 }
 
 const DeleteGoalForClient = async (req,res) => {
@@ -55,6 +70,7 @@ const DeleteGoalForClient = async (req,res) => {
 module.exports = {
 
     getAllGoalsForClient,
-    CreateGoalForClient
+    CreateGoalForClient,
+    UpdateGoalForClient
 
 }
