@@ -1,7 +1,7 @@
 # BackendDeployed
 
 This Repo was created for the deployment of the backend in Release 1. All future backend development will be done in
-the development branch and branch off from it as the main one is the deployed branch. 
+the development branch and branch off from it as the main one is the deployed branch.
 
 # Backend Rules
 PascalCase - Filenames
@@ -9,6 +9,11 @@ PascalCase - Filenames
 UPPERCASE for Constants
 
 lowerCamelCase for variables, properties and function names
+
+## Development rules
+- Main is the deployed Server dont work from it or branch from it 
+- Branch off from Development e.g CreateUserEndpoint work on it and merge back into development
+- Merge Development into main only for code fully tested and ready for deployment 
 
 Files
 .env file - sensitive data (API keys etc)
