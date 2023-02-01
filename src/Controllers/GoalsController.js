@@ -18,15 +18,15 @@ const getAllGoalsForClient = async (req,res) =>{
 }
 
 const CreateGoalForClient = async (req,res) => {
-
+//TODO:IMPLEMENT ENDPOINT
 }
 
 const UpdateGoalForClient = async (req,res) => {
-
+//TODO:IMPLEMENT ENDPOINT
 }
 
 const DeleteGoalForClient = async (req,res) => {
-
+//TODO:IMPLEMENT ENDPOINT
 }
 
 
