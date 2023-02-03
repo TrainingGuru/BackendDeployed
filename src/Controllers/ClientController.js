@@ -76,7 +76,7 @@ const getClientNutrition = async (req,res) => {
 
 }
 //Returns all clients for a certain trainer and their nutrition
-const getAllClientsAndNutrtitionForTrainer  = async (req,res) => {
+const getAllClientsAndNutritionForTrainer  = async (req,res) => {
 
     let clients = await Client.findAll({
         where : {
@@ -92,5 +92,6 @@ module.exports = {
     getAllClients,
     loginClient,
     registerClient,
-    getClientNutrition
+    getClientNutrition,
+    getAllClientsAndNutritionForTrainer
 }
