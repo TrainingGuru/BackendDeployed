@@ -112,7 +112,7 @@ const GetUpcomingWorkOut = async (req,res) =>{
                 [Op.gte] : new Date()
             }
         },
-        limit : 10, order :[['Date','ASC']], //DESC
+        limit : 3, order :[['Date','ASC']], //DESC
         attributes : ['Date'],
         include: [
             {
