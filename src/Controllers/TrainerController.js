@@ -26,7 +26,6 @@ const registerTrainer =  (req, res) => {
 
     if(trainer.Name === ""  || trainer.Password === "" ||  trainer.Email === ""){
         return res.status(400).json({message : 'Missing information in Body'})
-        console.log("no body")
     }else{
 
 
@@ -90,7 +89,7 @@ const getAllClientsForTrainer = async (req,res) =>{
         where : {
             TrainerID : id
         },
-        attributes:['Name'],
+        attributes:['ClientID','Name'],
     }).then(function (list){
         if(list.length <= 0){
             res.status(404).json("Trainer has No Clients")
