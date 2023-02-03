@@ -79,7 +79,6 @@ const CompleteAWorkOut = async (req,res) =>{
         if(!recordToUpdate)
             res.status(404).json("No Client Workout Found")
 
-
         if(recordToUpdate.Completed){
             res.status(400).json("Workout Already Completed");
         }else{
