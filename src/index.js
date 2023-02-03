@@ -1,5 +1,5 @@
 const PORT = 8080
-// const HOSTNAME = '192.168.1.137' // change to yours (Might change daily so needs updated)
+
 const express = require('express')
 const app = express()
 const database = require("./Config/DatabaseConfig.js");
@@ -8,6 +8,7 @@ const trainerRoute = require("./Routes/Trainer.js");
 const clientRoute = require("./Routes/Client.js");
 const workoutRoute = require("./Routes/WorkOuts.js");
 const goalRoute = require("./Routes/Goals.js");
+const pbRoute = require("./Routes/PersonalBest.js");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,6 +30,7 @@ app.use("/Client",clientRoute);
 app.use("/Trainer",trainerRoute);
 app.use("/Client",workoutRoute);
 app.use("/Goals",goalRoute);
+app.use("/PB",pbRoute);
 
 
 
@@ -49,7 +51,6 @@ database.sync({ force: false })
     .then(() => {
         console.log('re-sync done!')
     })
-//app.listen(PORT,HOSTNAME)
-//if in college use this one - but mobile work with
-console.log(`Server running at http://localhost:${PORT}`)
+
+
 app.listen(PORT,() => console.log('Server listening on localhost: '+PORT))
