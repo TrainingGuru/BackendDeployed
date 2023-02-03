@@ -107,17 +107,17 @@ const getAllClientsForTrainer = async (req,res) =>{
 const GetUpcomingWorkOut = async (req,res) =>{
 
     let upcomingWorkouts = await ClientWorkOut.findAll({
-        limit : 10, order :[['Date','DESC']],
-        //attributes : ['Date'],
+        limit : 3, order :[['Date','DESC']],
+        attributes : ['Date'],
         include: [
             {
                 model: Client,
-                //attributes : ['Name']
+                attributes : ['Name']
             },
             {
                 model : WorkOuts,
                 where : {TrainerID : req.params.id},
-                attributes : ['WorkoutName','TrainerID']
+                attributes : ['WorkoutName']
             },
         ]
     });
