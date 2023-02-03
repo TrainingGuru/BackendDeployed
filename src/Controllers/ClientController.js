@@ -90,7 +90,7 @@ const getAllClientsAndNutritionForTrainer  = async (req,res) => {
         }
     });
 
-    if(clients == null){
+    if(clients == null || clients.length <= 0 ){
         return res.status(404).json(`No Clients found for Trainer ${req.params.trainerID}`);
     }else{
         return res.status(200).json(clients);
