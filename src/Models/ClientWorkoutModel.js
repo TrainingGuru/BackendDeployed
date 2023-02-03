@@ -13,6 +13,7 @@ const ClientWorkout = sequelize.define("ClientWorkout",{
     ClientID:{
         type: Sequelize.INTEGER,
         allowNull: false,
+        //foreignKey:true,
         references:{
             model: 'Client',
             key: 'ClientID'
@@ -50,7 +51,6 @@ const ClientWorkout = sequelize.define("ClientWorkout",{
 }
 );
 
-
-ClientWorkout.hasMany(Clients,{foreignKey: 'ClientID'})
+ClientWorkout.belongsTo(Clients,{foreignKey: 'ClientID'}) //Belongs to fixed error of going to wrong client
 ClientWorkout.belongsTo(TrainerWorkout,{foreignKey: 'TrainerWorkoutID'})
 module.exports = ClientWorkout;

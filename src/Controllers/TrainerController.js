@@ -1,6 +1,8 @@
 const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");
-
+const ClientWorkOut = require("../Models/ClientWorkoutModel");
+const WorkOuts = require("../Models/TrainerWorkoutsModel");
+const { Op, DATE} = require('sequelize');
 //TODO:: VALIDATION in phase two
 //GetAllTrainer
 const getAllTrainers = async (req,res) =>{
@@ -101,5 +103,45 @@ const getAllClientsForTrainer = async (req,res) =>{
 }
 
 
+//get next 3 upcoming workouts for trainer with any client from today date
+const GetUpcomingWorkOut = async (req,res) =>{
 
-module.exports = {getAllTrainers, registerTrainer, loginTrainer, getAllClientsForTrainer}
+    let upcomingWorkouts = await ClientWorkOut.findAll({
+        where : {
+            Date: {
+                [Op.gte] : new Date()
+            }
+        },
+        limit : 10, order :[['Date','ASC']], //DESC
+        attributes : ['Date'],
+        include: [
+            {
+                model: Client,
+                attributes : ['Name']
+            },
+            {
+                model : WorkOuts,
+                where : {TrainerID : req.params.id},
+                attributes : ['WorkoutName']
+            },
+        ]
+    });
+
+    if(upcomingWorkouts <= 0){
+        return res.status(404).json("No upcoming Workouts")
+    }else{
+        return res.status(200).json(upcomingWorkouts)
+    }
+
+}
+
+
+
+module.exports = {
+    getAllTrainers,
+    registerTrainer,
+    loginTrainer,
+    getAllClientsForTrainer,
+    GetUpcomingWorkOut
+
+}
