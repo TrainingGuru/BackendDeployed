@@ -48,5 +48,5 @@ const Client = sequelize.define('Client',{
     });
 
 Client.belongsTo(Trainer,{foreignKey: 'TrainerID'});
-Client.hasOne(Nutrition, {foreignKey: 'NutritionID'})
+Client.hasOne(Nutrition, {foreignKey: 'NutritionID'});
 module.exports = Client;
