@@ -93,32 +93,7 @@ const CompleteAWorkOut = async (req,res) =>{
 
     })
 }
-//get next 3 upcoming workouts for trainer with any client
-const GetUpcomingWorkOut = async (req,res) =>{
 
-    let upcomingWorkouts = await ClientWorkOut.findAll({
-        limit : 3, order :[['Date','DESC']],
-        attributes : ['Date'],
-
-        include: {
-            model : Client,
-            attributes : ['Name']
-        },
-
-        include:{
-            model : WorkOuts,
-            where : {TrainerID : 1},
-            attributes : ['WorkoutName']
-        }
-    });
-
-    if(upcomingWorkouts <= 0){
-        return res.status(404).json("No upcoming Workouts")
-    }else{
-        return res.status(200).json(upcomingWorkouts)
-    }
-
-}
 //Use able Methods in
 
 module.exports = {
@@ -127,6 +102,5 @@ module.exports = {
     GetWorkOutsForWeek,
     GetWorkOutDetails,
     CompleteAWorkOut,
-    GetUpcomingWorkOut,
     
 }

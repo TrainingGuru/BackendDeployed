@@ -1,5 +1,7 @@
 const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");
+const ClientWorkOut = require("../Models/ClientWorkoutModel");
+const WorkOuts = require("../Models/TrainerWorkoutsModel");
 
 //TODO:: VALIDATION in phase two
 //GetAllTrainer
@@ -101,5 +103,40 @@ const getAllClientsForTrainer = async (req,res) =>{
 }
 
 
+//get next 3 upcoming workouts for trainer with any client
+const GetUpcomingWorkOut = async (req,res) =>{
 
-module.exports = {getAllTrainers, registerTrainer, loginTrainer, getAllClientsForTrainer}
+    let upcomingWorkouts = await ClientWorkOut.findAll({
+        limit : 3, order :[['Date','DESC']],
+        attributes : ['Date'],
+
+        include: {
+            model : Client,
+            attributes : ['Name']
+        },
+
+        include:{
+            model : WorkOuts,
+            where : {TrainerID : 1},
+            attributes : ['WorkoutName']
+        }
+    });
+
+    if(upcomingWorkouts <= 0){
+        return res.status(404).json("No upcoming Workouts")
+    }else{
+        return res.status(200).json(upcomingWorkouts)
+    }
+
+}
+
+
+
+module.exports = {
+    getAllTrainers,
+    registerTrainer,
+    loginTrainer,
+    getAllClientsForTrainer,
+    GetUpcomingWorkOut
+
+}
