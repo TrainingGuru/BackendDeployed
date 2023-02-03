@@ -75,7 +75,16 @@ const getClientNutrition = async (req,res) => {
     }
 
 }
+//Returns all clients for a certain trainer and their nutrition
+const getAllClientsAndNutrtitionForTrainer  = async (req,res) => {
 
+    let clients = await Client.findAll({
+        where : {
+            TrainerID : req.params.trainerID
+        }
+    })
+
+}
 
 
 
