@@ -24,7 +24,7 @@ const loginClient = async (req, res) => {
     if(!clients){
         res.status(404).send("No User found")
     }else if(clients.Password == req.body.Password){
-        res.status(200).send("Login Details Valid")
+        res.status(200).json({clientID : clients.ClientID});
     }else{
         res.status(401).send("Incorrect Password")
     }
@@ -42,14 +42,13 @@ const registerClient = async (req, res) => {
             TrainerID: client.TrainerID,
         }});
 
-    console.log(trainer);
-
     if(trainer == null)
     {
         return res.status(404).json("No trainer found")
     }else {
         if (client.Name === ""  || client.Password === "" ||  client.Email === "") {
             return res.status(400).json({message: 'Missing information in Body'})
+            //TODO:: ADD validation to check if client is already exists
         } else {
             Client.create(client).then((clientToAdd) => res.status(201).send(clientToAdd)).catch((err) => {
                 res.status(400).send(err);
