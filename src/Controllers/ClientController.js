@@ -81,9 +81,20 @@ const getAllClientsAndNutritionForTrainer  = async (req,res) => {
     let clients = await Client.findAll({
         where : {
             TrainerID : req.params.trainerID
-        }
-    })
+        },
+        attributes : ['Name'],
 
+        include:{
+            model : Nutrition,
+            attributes : ['TotalCalories','CaloriesIntake']
+        }
+    });
+
+    if(clients == null){
+        return res.status(404).json(`No Clients found for Trainer ${req.params.trainerID}`);
+    }else{
+        return res.status(200).json(clients);
+    }
 }
 
 
