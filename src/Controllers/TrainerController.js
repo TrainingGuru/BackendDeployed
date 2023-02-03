@@ -1,4 +1,4 @@
-const { Op} = require('sequelize');
+const {Op} = require('sequelize');
 
 const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");

@@ -4,7 +4,6 @@ const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
-const Client = require("../Models/ClientModel");
 
 
 
@@ -45,7 +44,7 @@ const GetWorkOutsForWeek = async (req,res) => {
     });
 }
 
-
+//GetWorkoutsForWeek() holds ClientWorkoutID which can be used to update
 const GetWorkOutDetails = async (req,res) => {
 
     await WorkOut.findAll({
@@ -70,7 +69,7 @@ const GetWorkOutDetails = async (req,res) => {
 
 }
 
-//GetWorkoutsForWeek() holds ClientWorkoutID which can be used to update
+
 const CompleteAWorkOut = async (req,res) =>{
 
     ClientWorkOut.findOne({
