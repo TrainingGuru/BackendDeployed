@@ -25,6 +25,8 @@ const WorkOutWeeks = async (req,res) => {
         }
     });
 }
+//GetWorkoutsForWeek() holds ClientWorkoutID which can be used to update
+//returns all workouts for a client for certain week
 const GetWorkOutsForWeek = async (req,res) => {
 
     await ClientWorkOut.findAll({
@@ -44,7 +46,29 @@ const GetWorkOutsForWeek = async (req,res) => {
     });
 }
 
-//GetWorkoutsForWeek() holds ClientWorkoutID which can be used to update
+const GetAllWorkOutsForClient = async (req,res) => {
+
+    await ClientWorkOut.findAll({
+        where : {
+            ClientID : req.params.id
+        },
+        attributes : ['ClientWorkoutID','Date','Notes'],
+        include: [
+            {
+                model: WorkOuts,
+                attributes : ['id','WorkoutName']
+            }
+        ]
+    }).then(function (List){
+        if(List.length <= 0){
+            res.status(404).json("No Workouts Found");
+        }else{
+            res.status(200).json(List);
+        }
+    });
+}
+
+
 const GetWorkOutDetails = async (req,res) => {
 
     await WorkOut.findAll({
@@ -101,5 +125,5 @@ module.exports = {
     GetWorkOutsForWeek,
     GetWorkOutDetails,
     CompleteAWorkOut,
-    
+    GetAllWorkOutsForClient
 }
