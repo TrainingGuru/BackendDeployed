@@ -24,7 +24,7 @@ const loginClient = async (req, res) => {
     if(!clients){
         res.status(404).send("No User found")
     }else if(clients.Password == req.body.Password){
-        res.status(200).json(clients.ClientID);
+        res.status(200).json({clientID : clients.ClientID});
     }else{
         res.status(401).send("Incorrect Password")
     }
