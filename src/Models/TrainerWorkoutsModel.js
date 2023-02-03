@@ -38,7 +38,7 @@ const TrainerWorkouts = sequelize.define("TrainerWorkouts",{
     updatedAt: false
 });
 
-//Workout.belongsTo(TrainerWorkouts, {foreignKey: 'TrainerWorkoutID'})
+Workout.belongsTo(TrainerWorkouts, {foreignKey: 'TrainerWorkoutID'})
 
 
 module.exports = TrainerWorkouts;

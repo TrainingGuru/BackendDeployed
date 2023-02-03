@@ -4,6 +4,8 @@ const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
+const Client = require("../Models/ClientModel");
+
 
 
 
@@ -91,6 +93,7 @@ const CompleteAWorkOut = async (req,res) =>{
 
     })
 }
+
 //Use able Methods in
 
 module.exports = {
@@ -98,6 +101,6 @@ module.exports = {
     WorkOutWeeks,
     GetWorkOutsForWeek,
     GetWorkOutDetails,
-    CompleteAWorkOut
+    CompleteAWorkOut,
     
 }
