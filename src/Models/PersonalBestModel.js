@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('../Config/DatabaseConfig');
 const Clients = require("./ClientModel");
+const Exercise = require("./ExerciseModel");
 
 const PersonalBest = sequelize.define("PersonalBest",{
     ClientID:{
@@ -39,6 +40,7 @@ const PersonalBest = sequelize.define("PersonalBest",{
 });
 
 PersonalBest.hasOne(Clients,{foreignKey: 'ClientID'});
-Clients.hasMany(PersonalBest,{foreignKey: 'ClientID'})
+Clients.hasMany(PersonalBest,{foreignKey: 'ClientID'});
+PersonalBest.belongsTo(Exercise,{foreignKey: 'ExerciseID'});
 
 module.exports = PersonalBest;

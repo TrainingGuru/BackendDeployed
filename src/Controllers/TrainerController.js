@@ -1,8 +1,11 @@
+const {Op} = require('sequelize');
+
 const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");
 const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
-const { Op, DATE} = require('sequelize');
+
+
 //TODO:: VALIDATION in phase two
 //GetAllTrainer
 const getAllTrainers = async (req,res) =>{
