@@ -32,6 +32,14 @@ app.use("/Client",workoutRoute);
 app.use("/Goals",goalRoute);
 app.use("/PB",pbRoute);
 
+app.get('/Sync', function(req, res) {
+    database.sync({ force: false })
+        .then(() => {
+            console.log('re-sync done!')
+            return res.status(200).json("re-sync done!")
+        })
+});
+
 
 
 
@@ -47,10 +55,7 @@ async function testConection(){
 
 testConection();
 
-database.sync({ force: false })
-    .then(() => {
-        console.log('re-sync done!')
-    })
+
 
 
 app.listen(PORT,() => console.log('Server listening on localhost: '+PORT))
