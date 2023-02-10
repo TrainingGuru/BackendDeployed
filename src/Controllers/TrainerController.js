@@ -1,4 +1,5 @@
 const {Op} = require('sequelize');
+import bcrypt from 'bcryptjs';
 
 const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");
