@@ -51,37 +51,8 @@ const registerTrainer = async (req, res) => {
                     res.status(400).send(err);
                 });
             }
-
         });
     }
-
-    //console.log(req.body);
-
-    // res.status(400);
-    // res.end()
-
-
-
-    
-    //return res.status(200).json({message: 'not Used'});
-    // res.end()
-
-    // console.log((trainerFromRepo))
-
-    //Check email is not registered
-    // Trainer.findOne({where : {
-    //     Email: req.body.Email,
-    //     }})
-    //     .then(userAccount => {
-    //         if(userAccount){
-    //             return res.status(409).json({message: 'User Email Already Used'})
-    //         }
-    //         else{
-    //             //return Trainer.create(trainer)
-    //             res.status(200).json(trainer)
-    //         }
-    //     })
-
 }
 const loginTrainer = async (req, res) => {
 
@@ -111,7 +82,6 @@ const loginTrainer = async (req, res) => {
             res.status(401).send("Incorrect Password")
             }
         })
-
     }
 }
 
