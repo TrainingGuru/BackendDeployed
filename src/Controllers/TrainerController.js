@@ -30,7 +30,7 @@ const registerTrainer = async (req, res) => {
 
     if(trainerFromRepo != null){
         res.status(409).json({message: 'User Email Already Used'});
-    }else if(trainer.Name === ""  || trainer.Password === "" ||  trainer.Email === ""){
+    }else if(req.body.Name === ""  || req.body.Password === "" ||  req.body.Email === ""){
         return res.status(400).json({message : 'Missing information in Body'})
     }
     else{
