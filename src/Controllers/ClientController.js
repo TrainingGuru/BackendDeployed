@@ -38,6 +38,7 @@ const registerClient = async (req, res) => {
         Email: req.body.Email,
         Password: req.body.Password
     }
+
     let trainer = await Trainer.findOne({where : {
             TrainerID: client.TrainerID,
         }});
@@ -45,11 +46,20 @@ const registerClient = async (req, res) => {
     if(trainer == null)
     {
         return res.status(404).json("No trainer found")
-    }else {
-        if (client.Name === ""  || client.Password === "" ||  client.Email === "") {
+    }
+    else {
+        let clientFromDB = await Client.findOne({where : { Email : req.body.Email}});
+
+        if(clientFromDB != null)
+        {
+            res.status(409).json({message: 'User Email Already Used'});
+        }
+        else if (client.Name === ""  || client.Password === "" ||  client.Email === "")
+        {
             return res.status(400).json({message: 'Missing information in Body'})
-            //TODO:: ADD validation to check if client is already exists
-        } else {
+        }
+        else
+        {
             Client.create(client).then((clientToAdd) => res.status(201).send(clientToAdd)).catch((err) => {
                 res.status(400).send(err);
             });

@@ -20,7 +20,7 @@ const getAllTrainers = async (req,res) =>{
     }
 }
 
-const registerTrainer =  (req, res) => {
+const registerTrainer = async (req, res) => {
 //TODO:: Hash Password, Error handling (Catch), Add account to db,
 // https://www.promisejs.org/
     let trainer = {
@@ -29,13 +29,16 @@ const registerTrainer =  (req, res) => {
         Password: req.body.Password
     }
 
-    if(trainer.Name === ""  || trainer.Password === "" ||  trainer.Email === ""){
+    let trainerFromRepo = await Trainer.findOne({where : { Email : req.body.Email}});
+
+    if(trainerFromRepo != null){
+        res.status(409).json({message: 'User Email Already Used'});
+    }else if(trainer.Name === ""  || trainer.Password === "" ||  trainer.Email === ""){
         return res.status(400).json({message : 'Missing information in Body'})
-    }else{
-
-
-        Trainer.create(trainer).then((trainerToAdd) => res.status(201).send(trainerToAdd)).catch((err) => {
-            //console.log(err);
+    }
+    else{
+        Trainer.create(trainer).then((trainerToAdd) => res.status(201).send(trainerToAdd)).catch((err) =>
+        {
             res.status(400).send(err);
         });
     }
@@ -45,9 +48,7 @@ const registerTrainer =  (req, res) => {
     // res.status(400);
     // res.end()
 
-    // let trainerFromRepo = Trainer.findOne({where : { Email : req.body.Email}});
-    // if(trainerFromRepo != null)
-    //     res.status(409).json({message: 'User Email Already Used'});
+
 
     
     //return res.status(200).json({message: 'not Used'});
