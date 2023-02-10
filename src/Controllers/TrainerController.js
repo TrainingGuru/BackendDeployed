@@ -1,4 +1,5 @@
 const {Op} = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");
@@ -23,53 +24,35 @@ const getAllTrainers = async (req,res) =>{
 const registerTrainer = async (req, res) => {
 //TODO:: Hash Password, Error handling (Catch), Add account to db,
 // https://www.promisejs.org/
-    let trainer = {
-        Name : req.body.Name,
-        Email: req.body.Email,
-        Password: req.body.Password
-    }
+
 
     let trainerFromRepo = await Trainer.findOne({where : { Email : req.body.Email}});
 
     if(trainerFromRepo != null){
         res.status(409).json({message: 'User Email Already Used'});
-    }else if(trainer.Name === ""  || trainer.Password === "" ||  trainer.Email === ""){
+    }else if(req.body.Name === ""  || req.body.Password === "" ||  req.body.Email === ""){
         return res.status(400).json({message : 'Missing information in Body'})
     }
     else{
-        Trainer.create(trainer).then((trainerToAdd) => res.status(201).send(trainerToAdd)).catch((err) =>
-        {
-            res.status(400).send(err);
+        bcrypt.hash(req.body.Password,12, (err, hashedPassword) => {
+            if(err){
+                console.log('Cannot encrypt');
+                return res.status(500).json({message: "Could not hash the password"});
+            }
+            else if(hashedPassword){
+                let trainer = {
+                    Name : req.body.Name,
+                    Email: req.body.Email,
+                    Password: hashedPassword
+                }
+
+                Trainer.create(trainer).then((trainerToAdd) => res.status(201).send(trainerToAdd)).catch((err) =>
+                {
+                    res.status(400).send(err);
+                });
+            }
         });
     }
-
-    //console.log(req.body);
-
-    // res.status(400);
-    // res.end()
-
-
-
-    
-    //return res.status(200).json({message: 'not Used'});
-    // res.end()
-
-    // console.log((trainerFromRepo))
-
-    //Check email is not registered
-    // Trainer.findOne({where : {
-    //     Email: req.body.Email,
-    //     }})
-    //     .then(userAccount => {
-    //         if(userAccount){
-    //             return res.status(409).json({message: 'User Email Already Used'})
-    //         }
-    //         else{
-    //             //return Trainer.create(trainer)
-    //             res.status(200).json(trainer)
-    //         }
-    //     })
-
 }
 const loginTrainer = async (req, res) => {
 
@@ -79,10 +62,21 @@ const loginTrainer = async (req, res) => {
 
     if(!trainer){
         res.status(404).send("No User found")
-    }else if(trainer.Password == req.body.Password){
-        res.status(200).json({TrainerID : trainer.TrainerID});
-    }else{
-        res.status(401).send("Incorrect Password")
+    }
+    else{
+        bcrypt.compare(req.body.Password,trainer.Password, (err, comparePW) => {
+            if(err){
+                res.status(502).json({message: "error while checking user password"});
+            }
+            else if( comparePW)
+            {
+                res.status(200).json({TrainerID : trainer.TrainerID});
+            }
+            else
+            {
+            res.status(401).send("Incorrect Password")
+            }
+        })
     }
 }
 
