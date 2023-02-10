@@ -91,10 +91,27 @@ const loginTrainer = async (req, res) => {
 
     if(!trainer){
         res.status(404).send("No User found")
-    }else if(trainer.Password == req.body.Password){
-        res.status(200).json({TrainerID : trainer.TrainerID});
-    }else{
-        res.status(401).send("Incorrect Password")
+    }
+    // else if(trainer.Password == req.body.Password){
+    //     res.status(200).json({TrainerID : trainer.TrainerID});
+    // }else{
+    //     res.status(401).send("Incorrect Password")
+    // }
+    else{
+        bcrypt.compare(req.body.Password,trainer.Password, (err, comparePW) => {
+            if(err){
+                res.status(502).json({message: "error while checking user password"});
+            }
+            else if( comparePW)
+            {
+                res.status(200).json({TrainerID : trainer.TrainerID});
+            }
+            else
+            {
+            res.status(401).send("Incorrect Password")
+            }
+        })
+
     }
 }
 
