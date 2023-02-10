@@ -24,11 +24,7 @@ const getAllTrainers = async (req,res) =>{
 const registerTrainer = async (req, res) => {
 //TODO:: Hash Password, Error handling (Catch), Add account to db,
 // https://www.promisejs.org/
-    let trainer = {
-        Name : req.body.Name,
-        Email: req.body.Email,
-        Password: req.body.Password
-    }
+
 
     let trainerFromRepo = await Trainer.findOne({where : { Email : req.body.Email}});
 
@@ -38,9 +34,24 @@ const registerTrainer = async (req, res) => {
         return res.status(400).json({message : 'Missing information in Body'})
     }
     else{
-        Trainer.create(trainer).then((trainerToAdd) => res.status(201).send(trainerToAdd)).catch((err) =>
-        {
-            res.status(400).send(err);
+        bcrypt.hash(req.body.Password,12, (err, hashedPassword) => {
+            if(err){
+                console.log('Cannot encrypt');
+                return res.status(500).json({message: "Could not hash the password"});
+            }
+            else if(hashedPassword){
+                let trainer = {
+                    Name : req.body.Name,
+                    Email: req.body.Email,
+                    Password: hashedPassword
+                }
+
+                Trainer.create(trainer).then((trainerToAdd) => res.status(201).send(trainerToAdd)).catch((err) =>
+                {
+                    res.status(400).send(err);
+                });
+            }
+
         });
     }
 
