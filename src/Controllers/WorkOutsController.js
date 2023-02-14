@@ -4,12 +4,10 @@ const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
-
-
+const Client = require("../Models/ClientModel");
 
 
 const WorkOutWeeks = async (req,res) => {
-
 
     await ClientWorkOut.findAll({
         where : {
@@ -77,6 +75,7 @@ const GetWorkOutDetails = async (req,res) => {
             TrainerWorkoutID : req.params.id
         },
         attributes : ['TrainerWorkoutID'],
+        //attributes : ['TrainerWorkoutID','Sets','Reps'],
 
         include:{
             model: Exercises,
@@ -117,7 +116,33 @@ const CompleteAWorkOut = async (req,res) =>{
     })
 }
 
+const AssignClientAWorkout = async (req,res) =>
+{
+
+    let client = await Client.findOne( {
+        where : {
+            ClientID : req.params.id
+        }
+    });
+
+    if(client == null ){
+        return res.status(404).json("No client found")
+    }else{
+        let AssignWorkout = {
+            ClientID : req.params.id,
+            TrainerWorkoutID: req.body.TrainerWorkoutID,
+            Date: req.body.Date,
+            Week: req.body.Week,
+            Completed : false
+        }
+
+        ClientWorkOut.create(AssignWorkout).then((AssignedWorkout) => res.status(201).send(AssignedWorkout)).catch((err) => {
+            res.status(400).send(err);
+        });
+    }
+}
 //Use able Methods in
+
 
 module.exports = {
 
@@ -125,5 +150,7 @@ module.exports = {
     GetWorkOutsForWeek,
     GetWorkOutDetails,
     CompleteAWorkOut,
-    GetAllWorkOutsForClient
+    GetAllWorkOutsForClient,
+    AssignClientAWorkout
 }
+

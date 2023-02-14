@@ -43,8 +43,6 @@ const loginClient = async (req, res) => {
 
 const registerClient = async (req, res) => {
 
-
-
     let trainer = await Trainer.findOne({where : {
             TrainerID: req.body.TrainerID,
         }});
