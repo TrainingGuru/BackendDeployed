@@ -4,6 +4,7 @@ const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
+const Client = require("../Models/ClientModel");
 
 
 
@@ -120,6 +121,25 @@ const CompleteAWorkOut = async (req,res) =>{
 
 const AssignClientAWorkout = async (req,res) =>
 {
+
+    let client = await Client.findOne( {
+        where : {
+            ClientID : req.params.id
+        }
+    });
+
+    if(client == null ){
+        return res.status(404).json("No client found")
+    }else{
+        let AssignWorkout = {
+            ClientID : req.params.id,
+            TrainerWorkoutID: req.body.TrainerWorkoutID,
+            Date: req.body.Date,
+            Week: req.body.Week,
+            Completed : false
+        }
+
+    }
 
 }
 //Use able Methods in
