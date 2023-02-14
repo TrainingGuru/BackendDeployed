@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-
+require('dotenv').config();
 
 // const database = new Sequelize('TrainingGuru', 'admin', 'TrainingGuru', {
 //     dialect: 'mysql',
@@ -13,6 +13,12 @@ const database = new Sequelize('TrainingGuru', 'root', 'root', {
     host: 'localhost',
     port: '8889'
 });
+
+// const database = new Sequelize('TrainingGuru', 'root', 'root', {
+//     dialect: 'mysql',
+//     host: 'localhost',
+//     port: '8889'
+// });
 
 
 
