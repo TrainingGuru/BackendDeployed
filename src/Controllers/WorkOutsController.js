@@ -118,6 +118,9 @@ const CompleteAWorkOut = async (req,res) =>{
     })
 }
 
+const AssignClientAWorkout = async (req,res) => {
+
+}
 //Use able Methods in
 
 module.exports = {
@@ -126,5 +129,6 @@ module.exports = {
     GetWorkOutsForWeek,
     GetWorkOutDetails,
     CompleteAWorkOut,
-    GetAllWorkOutsForClient
+    GetAllWorkOutsForClient,
+    AssignClientAWorkout
 }
