@@ -77,6 +77,7 @@ const GetWorkOutDetails = async (req,res) => {
             TrainerWorkoutID : req.params.id
         },
         attributes : ['TrainerWorkoutID'],
+        //attributes : ['TrainerWorkoutID','Sets','Reps'],
 
         include:{
             model: Exercises,
