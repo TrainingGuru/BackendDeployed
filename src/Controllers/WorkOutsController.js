@@ -118,7 +118,8 @@ const CompleteAWorkOut = async (req,res) =>{
     })
 }
 
-const AssignClientAWorkout = async (req,res) => {
+const AssignClientAWorkout = async (req,res) =>
+{
 
 }
 //Use able Methods in

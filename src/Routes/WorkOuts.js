@@ -13,4 +13,5 @@ router.get("/:id/AllWorkouts",workoutController.GetAllWorkOutsForClient);
 router.post("/:id/AssignWorkout",workoutController.AssignClientAWorkout);
 
 
+
 module.exports = router;
