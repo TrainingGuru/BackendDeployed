@@ -36,7 +36,7 @@ const registerClient = async (req, res) => {
 
 
     let trainer = await Trainer.findOne({where : {
-            TrainerID: client.TrainerID,
+            TrainerID: req.body.TrainerID,
         }});
 
     if(trainer == null)
