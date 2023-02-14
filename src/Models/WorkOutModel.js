@@ -26,7 +26,15 @@ const WorkOut = sequelize.define("WorkOut",{
             model: 'TrainerWorkouts',
             key: 'id'
         }
-    }
+    },
+    // Sets:{
+    //     type: Sequelize.INTEGER,
+    //     allowNull: true,
+    // },
+    // Reps:{
+    //     type: Sequelize.INTEGER,
+    //     allowNull: true,
+    // },
 },{
     tableName: 'WorkOut',
     timestamps: false,
