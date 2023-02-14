@@ -11,7 +11,6 @@ const Client = require("../Models/ClientModel");
 
 const WorkOutWeeks = async (req,res) => {
 
-
     await ClientWorkOut.findAll({
         where : {
             ClientID : req.params.id
