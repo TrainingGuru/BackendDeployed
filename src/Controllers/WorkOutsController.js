@@ -139,8 +139,10 @@ const AssignClientAWorkout = async (req,res) =>
             Completed : false
         }
 
+        ClientWorkOut.create(AssignWorkout).then((AssignedWorkout) => res.status(201).send(AssignedWorkout)).catch((err) => {
+            res.status(400).send(err);
+        });
     }
-
 }
 //Use able Methods in
 
