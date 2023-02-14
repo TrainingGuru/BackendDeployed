@@ -65,7 +65,7 @@ const registerClient = async (req, res) => {
                         TrainerID: req.body.TrainerID,
                         Name: req.body.Name,
                         Email: req.body.Email,
-                        Password: req.body.Password
+                        Password: hashedPassword
                     }
 
                     Client.create(client).then((clientToAdd) => res.status(201).send(clientToAdd)).catch((err) => {
