@@ -7,8 +7,6 @@ const Exercises = require("../Models/ExerciseModel");
 const Client = require("../Models/ClientModel");
 
 
-
-
 const WorkOutWeeks = async (req,res) => {
 
     await ClientWorkOut.findAll({
