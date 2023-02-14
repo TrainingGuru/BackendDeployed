@@ -1,24 +1,19 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-// const database = new Sequelize('TrainingGuru', 'admin', 'TrainingGuru', {
+// const database = new Sequelize(process.env.AWS_DB_NAME, process.env.AWS_DB_USERNAME, process.env.AWS_DB_PW, {
 //     dialect: 'mysql',
-//     host: 'traininguru2.cxnpilaou3nh.eu-west-1.rds.amazonaws.com',
+//     host: process.env.AWS_DB_HOST,
 //     port: '3306'
 //
 // });
 
-const database = new Sequelize('TrainingGuru', 'root', 'root', {
+const database = new Sequelize(process.env.LOCAL_DB_NAME, process.env.LOCAL_DB_USERNAME, process.env.LOCAL_DB_PW, {
     dialect: 'mysql',
-    host: 'localhost',
+    host: process.env.LOCAL_DB_HOST,
     port: '8889'
 });
 
-// const database = new Sequelize('TrainingGuru', 'root', 'root', {
-//     dialect: 'mysql',
-//     host: 'localhost',
-//     port: '8889'
-// });
 
 
 
