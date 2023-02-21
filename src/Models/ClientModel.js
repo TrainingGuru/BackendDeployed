@@ -30,6 +30,10 @@ const Client = sequelize.define('Client',{
             type: Sequelize.STRING,
             allowNull: false,
         },
+        Notes:{
+            type: Sequelize.STRING,
+            allowNull: true,
+        },
         NutritionID:{
             type: Sequelize.INTEGER,
             allowNull: true,
