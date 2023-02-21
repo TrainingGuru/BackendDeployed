@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('../Config/DatabaseConfig');
 const Clients = require("./ClientModel");
-const Exercise = require("./ExerciseModel");
 
 const Weight = sequelize.define("Weight",{
     id:{
