@@ -137,8 +137,7 @@ const AssignClientAWorkout = async (req,res) =>
             Completed : false
         }
         // Send Email
-        SendEmail.NewWorkoutAssignedEmail(client.Email,client.name)
-
+        SendEmail.NewWorkoutAssignedEmail(client.Email,client.Name)
         ClientWorkOut.create(AssignWorkout).then((AssignedWorkout) => res.status(201).send(AssignedWorkout)).catch((err) => {
             res.status(400).send(err);
         });

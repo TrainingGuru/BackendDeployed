@@ -13,7 +13,7 @@ function NewWorkoutAssignedEmail(email,name) {
         from:{
             email: process.env.APP_EMAIL
         },
-        templateID: 'd-0756cdd09be64fefad885cb86d46215d',
+        templateId: "d-0756cdd09be64fefad885cb86d46215d",
         dynamicTemplateData: {
             name: name,
         }
