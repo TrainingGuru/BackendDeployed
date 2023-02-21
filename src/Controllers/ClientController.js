@@ -3,6 +3,7 @@ const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
 const Weight = require("../Models/WeightModel");
+const CatchUp = require("../Models/CatchUpModel");
 
 
 const getAllClients = async (req,res) =>{

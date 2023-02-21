@@ -23,7 +23,7 @@ const CatchUp = sequelize.define("CatchUp",{
     },
     Notes:{
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 },{
     tableName: 'ClientCatchUp',
