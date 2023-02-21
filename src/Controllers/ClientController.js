@@ -31,7 +31,7 @@ const loginClient = async (req, res) => {
             }
             else if( comparePW)
             {
-                res.status(200).json({TrainerID : clients.ClientID});
+                res.status(200).json({ClientID : clients.ClientID});
             }
             else
             {
