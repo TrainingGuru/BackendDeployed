@@ -5,7 +5,7 @@ require('dotenv').config();
 function NewWorkoutAssignedEmail(email,name) {
     emailAPI.setApiKey(process.env.SENDGRID_API_KEY)
 
-    email.send({
+    emailAPI.send({
         to: {
             email: email,
             name: name
