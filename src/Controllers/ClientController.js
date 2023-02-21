@@ -2,6 +2,9 @@ const Client = require("../Models/ClientModel");
 const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
+const Weight = require("../Models/WeightModel");
+const CatchUp = require("../Models/CatchUpModel");
+
 
 const getAllClients = async (req,res) =>{
     let clients = await Client.findAll()
@@ -14,6 +17,17 @@ const getAllClients = async (req,res) =>{
         res.end();
     }
 }
+// const getAllClients = async (req,res) =>{
+//     let clients = await Weight.findAll()
+//     if(clients.length < 1){
+//         res.status(404)
+//         res.end()
+//     }
+//     else{
+//         res.status(200).send(clients)
+//         res.end();
+//     }
+// }
 
 
 const loginClient = async (req, res) => {

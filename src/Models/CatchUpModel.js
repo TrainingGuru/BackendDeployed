@@ -2,12 +2,12 @@ const { Sequelize } = require('sequelize');
 const sequelize = require('../Config/DatabaseConfig');
 const Clients = require("./ClientModel");
 
-const NutritionHistoryModel = sequelize.define('NutritionHistory',{
-    NutritionHistoryID:{
+const CatchUp = sequelize.define("CatchUp",{
+    id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
     },
     ClientID:{
         type: Sequelize.INTEGER,
@@ -17,20 +17,22 @@ const NutritionHistoryModel = sequelize.define('NutritionHistory',{
             key: 'ClientID'
         }
     },
-    Date:{
+    Date: {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
-    CaloriesHit:{
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-    }
+    Notes:{
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
 },{
-    tableName: 'NutritionHistory',
+    tableName: 'ClientCatchUp',
     timestamps: false,
     createdAt: false,
     updatedAt: false
-})
-NutritionHistoryModel.belongsTo(Clients,{foreignKey: 'ClientID'});
-Clients.hasMany(NutritionHistoryModel,{foreignKey: 'ClientID'});
-module.exports = NutritionHistoryModel;
+});
+
+CatchUp.hasOne(Clients,{foreignKey: 'ClientID'});
+Clients.hasMany(CatchUp,{foreignKey: 'ClientID'});
+
+module.exports = CatchUp;
