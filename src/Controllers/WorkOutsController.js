@@ -5,6 +5,7 @@ const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
 const Client = require("../Models/ClientModel");
+const SendEmail = require("../Utilities/EmailSender");
 
 
 const WorkOutWeeks = async (req,res) => {
@@ -135,12 +136,14 @@ const AssignClientAWorkout = async (req,res) =>
             Week: req.body.Week,
             Completed : false
         }
-
+        // Send Email
+        SendEmail.NewWorkoutAssignedEmail(client.Email,client.Name)
         ClientWorkOut.create(AssignWorkout).then((AssignedWorkout) => res.status(201).send(AssignedWorkout)).catch((err) => {
             res.status(400).send(err);
         });
     }
 }
+
 //Use able Methods in
 
 
