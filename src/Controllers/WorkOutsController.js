@@ -5,6 +5,7 @@ const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
 const Client = require("../Models/ClientModel");
+const SendEmail = require("../Utilities/EmailSender");
 
 
 const WorkOutWeeks = async (req,res) => {
