@@ -2,7 +2,7 @@ const emailAPI = require('@sendgrid/mail');
 require('dotenv').config();
 
 
-function NewEmailAssignedEmail(email,name) {
+function NewWorkoutAssignedEmail(email,name) {
     emailAPI.setApiKey(process.env.SENDGRID_API_KEY)
 
     email.send({
@@ -23,5 +23,5 @@ function NewEmailAssignedEmail(email,name) {
 }
 
 module.exports = {
-    NewEmailAssignedEmail
+    NewWorkoutAssignedEmail
 }
