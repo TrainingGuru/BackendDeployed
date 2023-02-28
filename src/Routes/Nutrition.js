@@ -4,8 +4,8 @@ const nutritionController = require('../Controllers/NutrititionController')
 
 const router = express.Router();
 
-
-router.get("/")
+//client id - Updates the total Fat Total Target
+router.put("/:id/FatTotal")
 
 
 
