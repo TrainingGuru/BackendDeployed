@@ -41,3 +41,9 @@ const updateProteinTotalTarget = async (req,res) =>{
 
 }
 
+module.exports = {
+    updateCaloriesTotalTarget,
+    updateProteinTotalTarget,
+    updateFatsTotalTarget,
+    updateCarbsTotalTarget
+}
