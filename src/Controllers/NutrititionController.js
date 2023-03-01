@@ -18,7 +18,10 @@ const updateFatsTotalTarget = async (req,res) =>{
         })
 
         if(nutrition != null){
-            
+           await nutrition.update({
+                TotalFats : req.body.TotalFats
+            });
+           return res.status(201).json(nutrition);
         }
         else{
             return res.status(404).json("No Nutrition Plan Found")
@@ -37,3 +40,4 @@ const updateCarbsTotalTarget = async (req,res) =>{
 const updateProteinTotalTarget = async (req,res) =>{
 
 }
+
