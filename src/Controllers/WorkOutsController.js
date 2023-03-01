@@ -150,8 +150,19 @@ const getAllWorksForTrainer = async (req,res) =>
     let trainerWorkouts = await WorkOuts.findAll({
         where : {
             TrainerID : req.params.id
+        },
+        attributes : ['id','WorkoutName'],
+
+        include:{
+            model: WorkOut,
+            //attributes: {exclude : ['ExerciseID']}
         }
-    })
+    });
+    if(trainerWorkouts != null){
+        res.status(200).json(trainerWorkouts)
+    }else{
+        res.status(404).json("Trainer Has no Saved workouts")
+    }
 }
 
 module.exports = {
