@@ -5,6 +5,7 @@ const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const WorkOut = require("../Models/WorkOutModel");
 const Exercises = require("../Models/ExerciseModel");
 const Client = require("../Models/ClientModel");
+const SendEmail = require("../Utilities/EmailSender");
 
 
 const WorkOutWeeks = async (req,res) => {
@@ -135,13 +136,29 @@ const AssignClientAWorkout = async (req,res) =>
             Week: req.body.Week,
             Completed : false
         }
-
+        // Send Email
+        SendEmail.NewWorkoutAssignedEmail(client.Email,client.Name)
         ClientWorkOut.create(AssignWorkout).then((AssignedWorkout) => res.status(201).send(AssignedWorkout)).catch((err) => {
             res.status(400).send(err);
         });
     }
 }
-//Use able Methods in
+
+//get all workouts belonging to one trainer
+const getAllWorksForTrainer = async (req,res) =>
+{
+    let trainerWorkouts = await WorkOuts.findAll({
+        where : {
+            TrainerID : req.params.id
+        },
+        attributes : ['id','WorkoutName'],
+    });
+    if(trainerWorkouts.length <= 0){
+        res.status(404).json("Trainer Has no Saved workouts")
+    }else{
+        res.status(200).json(trainerWorkouts)
+    }
+}
 
 
 module.exports = {
@@ -151,5 +168,6 @@ module.exports = {
     GetWorkOutDetails,
     CompleteAWorkOut,
     GetAllWorkOutsForClient,
-    AssignClientAWorkout
+    AssignClientAWorkout,
+    getAllWorksForTrainer
 }
