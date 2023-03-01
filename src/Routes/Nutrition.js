@@ -8,7 +8,7 @@ const router = express.Router();
 router.put("/:id/FatTotal",nutritionController.updateFatsTotalTarget);
 router.put("/:id/CaloriesTotal",nutritionController.updateCaloriesTotalTarget);
 router.put("/:id/ProteinTotal",nutritionController.updateProteinTotalTarget);
-
+router.put("/:id/CarbsTotal",nutritionController.updateCarbsTotalTarget);
 
 
 module.exports = router;
