@@ -13,6 +13,16 @@ const updateFatsTotalTarget = async (req,res) =>{
 
     if(clientFromDB != null)
     {
+        let nutrition = await Nutrition.findOne({
+            where : {NutritionID : clientFromDB.NutritionID}
+        })
+
+        if(nutrition != null){
+            
+        }
+        else{
+            return res.status(404).json("No Nutrition Plan Found")
+        }
 
     }
     else{
