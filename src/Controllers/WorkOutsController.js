@@ -144,8 +144,15 @@ const AssignClientAWorkout = async (req,res) =>
     }
 }
 
-//Use able Methods in
-
+//get all workouts belonging to one trainer
+const getAllWorksForTrainer = async (req,res) =>
+{
+    let trainerWorkouts = await WorkOuts.findAll({
+        where : {
+            TrainerID : req.params.id
+        }
+    })
+}
 
 module.exports = {
 
@@ -154,5 +161,6 @@ module.exports = {
     GetWorkOutDetails,
     CompleteAWorkOut,
     GetAllWorkOutsForClient,
-    AssignClientAWorkout
+    AssignClientAWorkout,
+    getAllWorksForTrainer
 }
