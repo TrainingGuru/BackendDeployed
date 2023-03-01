@@ -20,14 +20,6 @@ const Exercise = sequelize.define("Exercise",{
         type: Sequelize.STRING,
         allowNull: false,
     },
-    Sets:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
-    Reps:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
     Instructions:{
         type: Sequelize.STRING,
         allowNull: false,

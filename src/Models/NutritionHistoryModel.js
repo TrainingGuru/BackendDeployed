@@ -32,5 +32,5 @@ const NutritionHistoryModel = sequelize.define('NutritionHistory',{
     updatedAt: false
 })
 NutritionHistoryModel.belongsTo(Clients,{foreignKey: 'ClientID'});
-Clients.hasMany(NutritionHistoryModel,{foreignKey: 'ClientID'})
+Clients.hasMany(NutritionHistoryModel,{foreignKey: 'ClientID'});
 module.exports = NutritionHistoryModel;

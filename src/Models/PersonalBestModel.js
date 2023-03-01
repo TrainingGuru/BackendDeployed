@@ -22,11 +22,11 @@ const PersonalBest = sequelize.define("PersonalBest",{
     },
     PersonalBest:{
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     LastPB:{
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     Date: {
         type: Sequelize.DATEONLY,

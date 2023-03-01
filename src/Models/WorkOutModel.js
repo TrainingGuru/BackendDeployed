@@ -27,14 +27,14 @@ const WorkOut = sequelize.define("WorkOut",{
             key: 'id'
         }
     },
-    // Sets:{
-    //     type: Sequelize.INTEGER,
-    //     allowNull: true,
-    // },
-    // Reps:{
-    //     type: Sequelize.INTEGER,
-    //     allowNull: true,
-    // },
+    Sets:{
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+    Reps:{
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
 },{
     tableName: 'WorkOut',
     timestamps: false,
