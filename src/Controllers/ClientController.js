@@ -3,6 +3,8 @@ const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
 
+
+
 const getAllClients = async (req,res) =>{
     let clients = await Client.findAll()
     if(clients.length < 1){
@@ -14,6 +16,17 @@ const getAllClients = async (req,res) =>{
         res.end();
     }
 }
+// const getAllClients = async (req,res) =>{
+//     let clients = await Weight.findAll()
+//     if(clients.length < 1){
+//         res.status(404)
+//         res.end()
+//     }
+//     else{
+//         res.status(200).send(clients)
+//         res.end();
+//     }
+// }
 
 
 const loginClient = async (req, res) => {
@@ -31,7 +44,7 @@ const loginClient = async (req, res) => {
             }
             else if( comparePW)
             {
-                res.status(200).json({TrainerID : clients.ClientID});
+                res.status(200).json({ClientID : clients.ClientID});
             }
             else
             {
@@ -64,6 +77,21 @@ const registerClient = async (req, res) => {
         }
         else
         {
+            let nutritionPlan = {
+                "TotalCalories": 0,
+                "TotalFats": 0,
+                "TotalProtein": 0,
+                "TotalCarbohydrates": 0,
+                "CaloriesIntake": 0,
+                "FatsIntake": 0,
+                "ProteinIntake": 0,
+                "CarbohydratesIntake": 0
+            }
+
+            let nutritionPlanID
+            await Nutrition.create(nutritionPlan).then((nutritionAdded) =>
+                nutritionPlanID = nutritionAdded.NutritionID)
+
             bcrypt.hash(req.body.Password,12, (err, hashedPassword) => {
                 if (err) {
                     console.log('Cannot encrypt');
@@ -73,10 +101,12 @@ const registerClient = async (req, res) => {
                         TrainerID: req.body.TrainerID,
                         Name: req.body.Name,
                         Email: req.body.Email,
-                        Password: hashedPassword
+                        Password: hashedPassword,
+                        NutritionID: nutritionPlanID
                     }
 
-                    Client.create(client).then((clientToAdd) => res.status(201).send(clientToAdd)).catch((err) => {
+                    Client.create(client).then((clientToAdd) =>
+                        res.status(201).send(clientToAdd)).catch((err) => {
                         res.status(400).send(err);
                     });
                 }
