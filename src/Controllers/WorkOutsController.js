@@ -152,16 +152,11 @@ const getAllWorksForTrainer = async (req,res) =>
             TrainerID : req.params.id
         },
         attributes : ['id','WorkoutName'],
-
-        include:{
-            model: WorkOut,
-            //attributes: {exclude : ['ExerciseID']}
-        }
     });
-    if(trainerWorkouts != null){
-        res.status(200).json(trainerWorkouts)
-    }else{
+    if(trainerWorkouts.length <= 0){
         res.status(404).json("Trainer Has no Saved workouts")
+    }else{
+        res.status(200).json(trainerWorkouts)
     }
 }
 

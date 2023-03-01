@@ -39,6 +39,7 @@ const TrainerWorkouts = sequelize.define("TrainerWorkouts",{
 });
 
 Workout.belongsTo(TrainerWorkouts, {foreignKey: 'TrainerWorkoutID'})
+TrainerWorkouts.hasOne(Workout,{foreignKey: 'TrainerWorkoutID'})
 
 
 module.exports = TrainerWorkouts;
