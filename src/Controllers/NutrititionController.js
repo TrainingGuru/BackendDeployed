@@ -113,9 +113,41 @@ const updateProteinTotalTarget = async (req,res) =>{
     }
 }
 
+const updateClientIntake = async (req, res) => {
+    let clientFromDB = await Client.findOne({
+        where : {
+            ClientID : req.params.id
+        }});
+
+    if(clientFromDB != null)
+    {
+        let nutrition = await Nutrition.findOne({
+            where : {NutritionID : clientFromDB.NutritionID}
+        })
+
+        if(nutrition != null){
+            await nutrition.update({
+                CaloriesIntake: req.body.CaloriesIntake,
+                FatsIntake: req.body.FatsIntake,
+                ProteinIntake: req.body.ProteinIntake,
+                CarbohydratesIntake: req.body.CarbohydratesIntake
+            });
+            return res.status(201).json(nutrition);
+        }
+        else{
+            return res.status(404).json("No Nutrition Plan Found")
+        }
+
+    }
+    else{
+        return res.status(404).json("No User Found")
+    }
+}
+
 module.exports = {
     updateCaloriesTotalTarget,
     updateProteinTotalTarget,
     updateFatsTotalTarget,
-    updateCarbsTotalTarget
+    updateCarbsTotalTarget,
+    updateClientIntake
 }
