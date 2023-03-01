@@ -17,7 +17,7 @@ const updateCaloriesTotalTarget = async (req,res) =>{
             await nutrition.update({
                 TotalCalories : req.body.TotalCalories
             });
-            return res.status(201).json(nutrition);
+            return res.status(204).json(nutrition);
         }
         else{
             return res.status(404).json("No Nutrition Plan Found")
@@ -45,7 +45,7 @@ const updateFatsTotalTarget = async (req,res) =>{
            await nutrition.update({
                 TotalFats : req.body.TotalFats
             });
-           return res.status(201).json(nutrition);
+            return res.status(204).json(nutrition);
         }
         else{
             return res.status(404).json("No Nutrition Plan Found")
@@ -73,7 +73,7 @@ const updateCarbsTotalTarget = async (req,res) =>{
             await nutrition.update({
                 TotalCarbohydrates : req.body.TotalCarbohydrates
             });
-            return res.status(201).json(nutrition);
+            return res.status(204).json(nutrition);
         }
         else{
             return res.status(404).json("No Nutrition Plan Found")
@@ -101,7 +101,7 @@ const updateProteinTotalTarget = async (req,res) =>{
             await nutrition.update({
                 TotalProtein : req.body.TotalProtein
             });
-            return res.status(201).json(nutrition);
+            return res.status(204).json(nutrition);
         }
         else{
             return res.status(404).json("No Nutrition Plan Found")
@@ -132,7 +132,7 @@ const updateClientIntake = async (req, res) => {
                 ProteinIntake: req.body.ProteinIntake,
                 CarbohydratesIntake: req.body.CarbohydratesIntake
             });
-            return res.status(201).json(nutrition);
+            return res.status(204).json(nutrition);
         }
         else{
             return res.status(404).json("No Nutrition Plan Found")
