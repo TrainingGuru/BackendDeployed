@@ -6,7 +6,7 @@ const router = express.Router();
 
 //client id - Updates the total Fat Total Target
 router.put("/:id/FatTotal",nutritionController.updateFatsTotalTarget);
-
+router.put("/:id/CaloriesTotal",nutritionController.updateCaloriesTotalTarget);
 
 
 
