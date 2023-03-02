@@ -9,7 +9,7 @@ const x = require("../Models/WeightModel");
 
 
 const getAllClients = async (req,res) =>{
-    let clients = await Client.findAll()
+    let clients = await ClientCatch.findAll()
     if(clients.length < 1){
         res.status(404)
         res.end()
