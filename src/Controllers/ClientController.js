@@ -2,6 +2,7 @@ const Client = require("../Models/ClientModel");
 const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
+const SendEmail = require("../Utilities/EmailSender");
 
 
 
@@ -105,6 +106,7 @@ const registerClient = async (req, res) => {
                         NutritionID: nutritionPlanID
                     }
 
+                    SendEmail.NewClientRegisterEmail(client.Email,client.Name,req.body.Password,trainer.Name)
                     Client.create(client).then((clientToAdd) =>
                         res.status(201).send(clientToAdd)).catch((err) => {
                         res.status(400).send(err);
