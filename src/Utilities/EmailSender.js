@@ -33,10 +33,12 @@ function NewClientRegisterEmail(email,name,password,trainerName) {
         from:{
             email: process.env.APP_EMAIL
         },
-        templateId: "d-0756cdd09be64fefad885cb86d46215d", //TODO:: need to change
+        templateId: "d-43c1bd437e1a4cdb86093faee8fa7ac4",
         dynamicTemplateData: {
             name: name,
-            //TODO:: Add trainer name and client password
+            trainer: trainerName,
+            email: email,
+            password: password
         }
     }).then(() => {
         console.log("Email Sent")
@@ -44,5 +46,6 @@ function NewClientRegisterEmail(email,name,password,trainerName) {
 }
 
 module.exports = {
-    NewWorkoutAssignedEmail
+    NewWorkoutAssignedEmail,
+    NewClientRegisterEmail
 }
