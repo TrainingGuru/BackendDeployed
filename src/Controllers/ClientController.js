@@ -6,6 +6,7 @@ const SendEmail = require("../Utilities/EmailSender");
 
 
 
+
 const getAllClients = async (req,res) =>{
     let clients = await Client.findAll()
     if(clients.length < 1){
@@ -181,6 +182,8 @@ module.exports = {
     loginClient,
     registerClient,
     getClientNutrition,
+
     getAllClientsAndNutritionForTrainer,
     getOneClientsNotes
-}
+
+
