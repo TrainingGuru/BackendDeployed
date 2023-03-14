@@ -157,6 +157,23 @@ const getAllClientsAndNutritionForTrainer  = async (req,res) => {
     }
 }
 
+const getOneClientsNotes  = async (req,res) => {
+
+    let client = await Client.findOne({
+        where : {
+            ClientID : req.params.id
+        },
+        attributes : ['Name','Notes'],
+
+    });
+
+    if(client == null || client.length <= 0 ){
+        return res.status(404).json(`No Client found for ID of  ${req.params.id}`);
+    }else{
+        return res.status(200).json(client);
+    }
+}
+
 
 
 module.exports = {
@@ -164,5 +181,6 @@ module.exports = {
     loginClient,
     registerClient,
     getClientNutrition,
-    getAllClientsAndNutritionForTrainer
+    getAllClientsAndNutritionForTrainer,
+    getOneClientsNotes
 }
