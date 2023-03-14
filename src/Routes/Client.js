@@ -10,6 +10,7 @@ router.post("/Login",clientController.loginClient)
 router.post("/Register",clientController.registerClient)
 router.get("/:id/NutritionValue",clientController.getClientNutrition)
 router.get("/Trainer/:trainerID/NutritionValues",clientController.getAllClientsAndNutritionForTrainer)
+router.get("/:id",clientController.getOneClientsNotes)
 
 
 module.exports = router;
