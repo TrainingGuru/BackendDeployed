@@ -25,3 +25,7 @@ const addClientWeight = async (req, res) => {
         }
     }
 }
+
+module.exports = {
+    addClientWeight,
+}
