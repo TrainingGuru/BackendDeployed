@@ -1,4 +1,4 @@
-const ClientWeightController = require("../Models/WeightModel");
+const ClientWeight = require("../Models/WeightModel");
 const Client = require("../Models/ClientModel");
 
 const addClientWeight = async (req, res) => {
@@ -19,13 +19,29 @@ const addClientWeight = async (req, res) => {
         if(clintWeight.Weight === "" || clintWeight.Weight == null || clintWeight.Date === "" || clintWeight.Date == null){
             return res.status(400).json("Missing Information in the body")
         } else{
-            ClientWeightController.create(clintWeight).then((clintWeightToAdd) => res.status(201).json(clintWeightToAdd))
+            ClientWeight.create(clintWeight).then((clintWeightToAdd) => res.status(201).json(clintWeightToAdd))
                 .catch((err) => { res.status(400).send(err);
                 });
         }
     }
 }
+const getAllRecordsOfAClientWeight = async (req, res) => {
+
+    let clientWeightRecords = await ClientWeight.findAll({
+        where : {
+            ClientID : req.params.clientId
+        }
+    });
+
+    if(clientWeightRecords.length <= 0 || null){
+        return res.status(404).json("No Weight Records for this client found")
+    }else{
+        return res.status(200).json(clientWeightRecords)
+    }
+
+}
 
 module.exports = {
     addClientWeight,
+    getAllRecordsOfAClientWeight,
 }
