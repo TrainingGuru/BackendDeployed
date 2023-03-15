@@ -160,11 +160,12 @@ const getAllWorksForTrainer = async (req,res) =>
     }
 }
 
+//passes client workout id
 const getNotesForOneClientWorkout = async (req,res) =>
 {
     let Note = ClientWorkOut.findOne({
         where :  {
-            ClientWorkoutID : req.body.ClientWorkoutID
+            ClientWorkoutID : req.params.id
         },
         attributes : ['Notes']
     })
