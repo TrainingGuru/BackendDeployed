@@ -1,4 +1,4 @@
-const ClientWeight = require("../Models/WeightModel");
+const ClientWeightController = require("../Models/WeightModel");
 const Client = require("../Models/ClientModel");
 const Goals = require("../Models/GoalsModel");
 
@@ -19,7 +19,7 @@ const addClientWeight = async (req, res) => {
         if(clintWeight.Weight === "" || clintWeight.Weight == null || clintWeight.Date === "" || clintWeight.Date == null){
             return res.status(400).json("Missing Information in the body")
         } else{
-            ClientWeight.create(clintWeight).then((clintWeightToAdd) => res.status(201).json(clintWeightToAdd))
+            ClientWeightController.create(clintWeight).then((clintWeightToAdd) => res.status(201).json(clintWeightToAdd))
                 .catch((err) => { res.status(400).send(err);
                 });
         }

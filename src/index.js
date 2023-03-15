@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const database = require("./Config/DatabaseConfig.js");
 
+//routes
 const trainerRoute = require("./Routes/Trainer.js");
 const clientRoute = require("./Routes/Client.js");
 const workoutRoute = require("./Routes/WorkOuts.js");
@@ -11,6 +12,7 @@ const trainerWorkoutRoute = require("./Routes/TrainerWorkouts");
 const goalRoute = require("./Routes/Goals.js");
 const pbRoute = require("./Routes/PersonalBest.js");
 const nutritionRoute = require("./Routes/Nutrition.js");
+const clientWeightRoute = require("./Routes/ClientWeight");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,6 +37,7 @@ app.use("/Client",workoutRoute);
 app.use("/Goals",goalRoute);
 app.use("/PB",pbRoute);
 app.use("/Nutrition",nutritionRoute);
+
 
 app.get('/Sync', function(req, res) {
     database.sync({ force: false })
