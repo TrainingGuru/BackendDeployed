@@ -1,6 +1,5 @@
 const ClientWeightController = require("../Models/WeightModel");
 const Client = require("../Models/ClientModel");
-const Goals = require("../Models/GoalsModel");
 
 const addClientWeight = async (req, res) => {
 
