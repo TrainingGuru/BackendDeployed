@@ -37,6 +37,7 @@ app.use("/Client",workoutRoute);
 app.use("/Goals",goalRoute);
 app.use("/PB",pbRoute);
 app.use("/Nutrition",nutritionRoute);
+app.use("/ClientWeight",clientWeightRoute);
 
 
 app.get('/Sync', function(req, res) {
