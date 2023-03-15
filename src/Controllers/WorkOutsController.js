@@ -160,6 +160,23 @@ const getAllWorksForTrainer = async (req,res) =>
     }
 }
 
+const getNotesForOneClientWorkout = async (req,res) =>
+{
+    let Note = ClientWorkOut.findOne({
+        where :  {
+            ClientWorkoutID : req.body.ClientWorkoutID
+        },
+        attributes : ['Notes']
+    })
+
+    if(Note.length <= 0 || null){
+        return res.status(404).json("No workout Found")
+    }else{
+        return res.status(200).json(Note)
+    }
+}
+
+
 
 module.exports = {
 
@@ -169,5 +186,6 @@ module.exports = {
     CompleteAWorkOut,
     GetAllWorkOutsForClient,
     AssignClientAWorkout,
-    getAllWorksForTrainer
+    getAllWorksForTrainer,
+    getNotesForOneClientWorkout
 }
