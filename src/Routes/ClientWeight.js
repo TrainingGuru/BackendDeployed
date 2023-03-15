@@ -4,7 +4,7 @@ const clientWeightController = require('../Controllers/ClientWeightController')
 
 const router = express.Router();
 
-router.post("/:id",clientWeightController.addClientWeight)
+router.post("/:clientId",clientWeightController.addClientWeight)
 
 
 
