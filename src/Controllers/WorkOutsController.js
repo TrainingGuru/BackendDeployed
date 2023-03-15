@@ -160,6 +160,24 @@ const getAllWorksForTrainer = async (req,res) =>
     }
 }
 
+//passes client workout id
+const getNotesForOneClientWorkout = async (req,res) =>
+{
+    let Note = await ClientWorkOut.findOne({
+        where :  {
+            ClientWorkoutID : req.params.id
+        },
+        attributes : ['Notes']
+    })
+
+    if(Note.length <= 0 || null){
+        return res.status(404).json("No workout Found")
+    }else{
+        return res.status(200).json(Note)
+    }
+}
+
+
 
 module.exports = {
 
@@ -169,5 +187,6 @@ module.exports = {
     CompleteAWorkOut,
     GetAllWorkOutsForClient,
     AssignClientAWorkout,
-    getAllWorksForTrainer
+    getAllWorksForTrainer,
+    getNotesForOneClientWorkout
 }
