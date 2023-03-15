@@ -11,6 +11,7 @@ router.get("/Workout/:id",workoutController.GetWorkOutDetails);
 router.put("/CompleteWorkout/:id",workoutController.CompleteAWorkOut);
 router.get("/:id/AllWorkouts",workoutController.GetAllWorkOutsForClient);
 router.post("/:id/AssignWorkout",workoutController.AssignClientAWorkout);
+router.get("/WorkoutNote/:id",workoutController.getNotesForOneClientWorkout);
 
 
 
