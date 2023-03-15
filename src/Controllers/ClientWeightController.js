@@ -3,9 +3,10 @@ const Client = require("../Models/ClientModel");
 
 const addClientWeight = async (req, res) => {
 
+    let todayDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
     let clintWeight = {
         ClientID : req.params.clientId,
-        Date : req.body.Date,
+        Date : todayDate,
         Weight : req.body.Weight
     }
     let client = await Client.findOne({where : {
