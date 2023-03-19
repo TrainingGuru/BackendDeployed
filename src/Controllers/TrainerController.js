@@ -93,7 +93,7 @@ const getAllClientsForTrainer = async (req,res) =>{
         include : [
             {
                 model : CatchUp,
-                limit : 1, order: [['Date','ASC']],
+                limit : 1, order: [['Date','DESC']],
                 attributes : ['Rating']
             }
         ],
