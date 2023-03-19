@@ -151,12 +151,15 @@ const getUpComingMeetingForTrainer = async (req,res) =>{
             ['Date','ASC'],
             ['Time','ASC']
         ],
+        where : {
+            Rating : null
+        },
         include : [
             {
                 model : Client,
                 where : {
                     TrainerID : id,
-                    //Rating : null
+
                 },
                 //attributes:['ClientID','Name']
             }
