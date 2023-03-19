@@ -182,8 +182,9 @@ module.exports = {
     loginClient,
     registerClient,
     getClientNutrition,
-
     getAllClientsAndNutritionForTrainer,
     getOneClientsNotes
+
+}
 
 
