@@ -5,7 +5,7 @@ const Trainer = require("../Models/TrainersModel");
 const Client = require("../Models/ClientModel");
 const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
-
+const CatchUp = require("../Models/CatchUpModel");
 
 //TODO:: VALIDATION in phase two
 //GetAllTrainer
@@ -90,6 +90,13 @@ const getAllClientsForTrainer = async (req,res) =>{
             TrainerID : id
         },
         attributes:['ClientID','Name'],
+        include : [
+            {
+                model : CatchUp,
+                limit : 1, order: [['Date','DESC']],
+                attributes : ['Rating']
+            }
+        ],
     }).then(function (list){
         if(list.length <= 0){
             res.status(404).json("Trainer has No Clients")
