@@ -8,7 +8,7 @@ const scheduleCatchUp = async (req,res) =>{
         }
     });
 
-    if(client.length <= 0 || null){
+    if(client.length <= 0 || client == null){
         return res.status(404).json("Client not Found")
     }
     else{
