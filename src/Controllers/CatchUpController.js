@@ -15,7 +15,7 @@ const scheduleCatchUp = async (req,res) =>{
         let catchUpMeeting = {
             ClientID: req.params.clientId,
             Date: req.body.Date,
-            Time: req.body.Date,
+            Time: req.body.Time,
         }
 
         CatchUp.create(catchUpMeeting).then((meetingToAdd) =>
