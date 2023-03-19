@@ -29,6 +29,10 @@ const CatchUp = sequelize.define("CatchUp",{
         type: Sequelize.STRING,
         allowNull: true,
     },
+    Rating:{
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    }
 },{
     tableName: 'ClientCatchUp',
     timestamps: false,
