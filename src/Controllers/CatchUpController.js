@@ -1,5 +1,6 @@
 const CatchUp = require("../Models/CatchUpModel");
 const Client = require("../Models/ClientModel");
+const ClientWorkOut = require("../Models/ClientWorkoutModel");
 
 const scheduleCatchUp = async (req,res) =>{
     let client = await Client.findOne({
@@ -25,6 +26,28 @@ const scheduleCatchUp = async (req,res) =>{
     }
 }
 
+const submitCatchUp = async (req, res) => {
+
+    CatchUp.findOne({
+        where: {
+            id : req.params.catchUpID
+        }
+    }).then(recordToUpdate => {
+        if(!recordToUpdate)
+            res.status(404).json("No Catchup Meeting Found")
+
+       else{
+            recordToUpdate.update({
+                Notes : req.body.Notes,
+                Rating : req.body.Rating
+            });
+            res.status(201).json("CatchUp Submitted");
+        }
+
+    })
+}
+
 module.exports = {
     scheduleCatchUp,
+    submitCatchUp
 }
