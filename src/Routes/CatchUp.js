@@ -1,5 +1,5 @@
 const express = require("express");
-const catchUpController = require('../Controllers/ClientWeightController')
+const catchUpController = require('../Controllers/CatchUpController')
 
 
 const router = express.Router();
