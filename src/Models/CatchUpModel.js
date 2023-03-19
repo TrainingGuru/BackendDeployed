@@ -21,6 +21,10 @@ const CatchUp = sequelize.define("CatchUp",{
         type: Sequelize.DATEONLY,
         allowNull: false
     },
+    Time:{
+        type: Sequelize.TIME,
+        allowNull: false
+    },
     Notes:{
         type: Sequelize.STRING,
         allowNull: true,
