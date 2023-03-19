@@ -13,6 +13,7 @@ const goalRoute = require("./Routes/Goals.js");
 const pbRoute = require("./Routes/PersonalBest.js");
 const nutritionRoute = require("./Routes/Nutrition.js");
 const clientWeightRoute = require("./Routes/ClientWeight");
+const catchUpRoute = require("./Routes/CatchUp");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,6 +39,7 @@ app.use("/Goals",goalRoute);
 app.use("/PB",pbRoute);
 app.use("/Nutrition",nutritionRoute);
 app.use("/ClientWeight",clientWeightRoute);
+app.use("/CatchUp",catchUpRoute);
 
 
 app.get('/Sync', function(req, res) {
