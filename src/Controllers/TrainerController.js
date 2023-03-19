@@ -155,9 +155,10 @@ const getUpComingMeetingForTrainer = async (req,res) =>{
             {
                 model : Client,
                 where : {
-                    TrainerID : id
+                    TrainerID : id,
+                    //Rating : null
                 },
-                attributes:['ClientID','Name']
+                //attributes:['ClientID','Name']
             }
         ],
     }).then(function (list){
