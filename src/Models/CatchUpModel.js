@@ -7,11 +7,13 @@ const CatchUp = sequelize.define("CatchUp",{
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true,
+        //primaryKey: false,
     },
     ClientID:{
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
+        foreignKey: true,
         references:{
             model: 'Client',
             key: 'ClientID'

@@ -1,6 +1,5 @@
 const CatchUp = require("../Models/CatchUpModel");
 const Client = require("../Models/ClientModel");
-const ClientWorkOut = require("../Models/ClientWorkoutModel");
 
 const scheduleCatchUp = async (req,res) =>{
     let client = await Client.findOne({

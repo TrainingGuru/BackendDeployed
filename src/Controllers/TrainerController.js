@@ -80,7 +80,7 @@ const loginTrainer = async (req, res) => {
     }
 }
 
-//Just returns Names
+//Just returns Names and recent rating
 const getAllClientsForTrainer = async (req,res) =>{
 
     let id = req.params.id;
@@ -93,7 +93,8 @@ const getAllClientsForTrainer = async (req,res) =>{
         include : [
             {
                 model : CatchUp,
-                limit : 1, order: [['Date','DESC']],
+                limit : 1,
+                order: [['Date','DESC']],
                 attributes : ['Rating']
             }
         ],
@@ -140,6 +141,38 @@ const GetUpcomingWorkOut = async (req,res) =>{
 
 }
 
+const getUpComingMeetingForTrainer = async (req,res) =>{
+
+    let id = req.params.id;
+
+    CatchUp.findAll({
+        attributes:['Date','Time'],
+        order: [
+            ['Date','ASC'],
+            ['Time','ASC']
+        ],
+        where : {
+            Rating : null
+        },
+        include : [
+            {
+                model : Client,
+                where : {
+                    TrainerID : id,
+                },
+                attributes:['ClientID','Name']
+            }
+        ],
+    }).then(function (list){
+        if(list.length <= 0){
+            res.status(404).json("Trainer has No Meetings")
+        }
+        else{
+            res.status(200).json(list);
+        }
+    })
+}
+
 
 
 module.exports = {
@@ -147,6 +180,7 @@ module.exports = {
     registerTrainer,
     loginTrainer,
     getAllClientsForTrainer,
-    GetUpcomingWorkOut
+    GetUpcomingWorkOut,
+    getUpComingMeetingForTrainer
 
 }
