@@ -40,6 +40,10 @@ const Nutrition = sequelize.define('Nutrition',{
             type: Sequelize.INTEGER,
             allowNull: true,
         },
+        StepsGoal :{
+            type: Sequelize.INTEGER,
+            allowNull: true,
+        }
 
     },
     {
