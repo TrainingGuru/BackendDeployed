@@ -1,18 +1,30 @@
 const CatchUp = require("../Models/CatchUpModel");
 const Client = require("../Models/ClientModel");
 
-const getAllClients = async (req,res) =>{
-    let clients = await CatchUp.findAll()
-    if(clients.length < 1){
-        res.status(404)
-        res.end()
+const scheduleCatchUp = async (req,res) =>{
+    let client = await Client.findOne({
+        where : {
+            ClientID : req.params.clientId
+        }
+    });
+
+    if(client.length <= 0){
+        return res.status(404).json("Client not Found")
     }
     else{
-        res.status(200).send(clients)
-        res.end();
+        let catchUpMeeting = {
+            ClientID: req.params.clientId,
+            Date: req.body.Date,
+            Time: req.body.Date,
+        }
+
+        CatchUp.create(catchUpMeeting).then((meetingToAdd) =>
+            res.status(201).send(meetingToAdd)).catch((err) => {
+            res.status(400).send(err);
+        });
     }
 }
 
 module.exports = {
-    getAllClients,
+    scheduleCatchUp,
 }
