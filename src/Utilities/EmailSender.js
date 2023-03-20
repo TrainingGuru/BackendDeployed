@@ -1,4 +1,5 @@
 const emailAPI = require('@sendgrid/mail');
+const Client = require("../Models/ClientModel");
 require('dotenv').config();
 
 
@@ -67,24 +68,27 @@ function NewCheckIn(email,name,date,time) {
     })
 }
 
-function CatchUpFeedback(clientID,rating,notes) {
+async function CatchUpFeedback(clientID, rating, notes) {
 
-    let name = "";
-    let email = "";
+    let client = await Client.findOne({
+        where: {
+            ClientID: clientID
+        }
+    });
 
     emailAPI.setApiKey(process.env.SENDGRID_API_KEY)
 
     emailAPI.send({
         to: {
-            email: email,
-            name: name
+            email: client.email,
+            name: client.name
         },
-        from:{
+        from: {
             email: process.env.APP_EMAIL
         },
         templateId: "d-bd1c0305e3214755b2fd9c74d988ecb7",
         dynamicTemplateData: {
-            name: name,
+            name: client.name,
             rating: rating,
             notes: notes,
         }
