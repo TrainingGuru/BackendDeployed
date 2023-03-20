@@ -45,6 +45,7 @@ const submitCatchUp = async (req, res) => {
                 Week: req.body.Week
             });
             SendEmail.CatchUpFeedback(recordToUpdate.ClientID,req.body.Rating,req.body.Notes);
+            console.log(recordToUpdate.ClientID)
             res.status(201).json("CatchUp Submitted");
         }
 
