@@ -1,5 +1,6 @@
 const CatchUp = require("../Models/CatchUpModel");
 const Client = require("../Models/ClientModel");
+const SendEmail = require("../Utilities/EmailSender");
 
 const scheduleCatchUp = async (req,res) =>{
     let client = await Client.findOne({
@@ -17,7 +18,7 @@ const scheduleCatchUp = async (req,res) =>{
             Date: req.body.Date,
             Time: req.body.Time,
         }
-
+        SendEmail.NewCheckIn(client.Email,client.Name,req.body.Date,req.body.Time);
         CatchUp.create(catchUpMeeting).then((meetingToAdd) =>
             res.status(201).send(meetingToAdd)).catch((err) => {
             res.status(400).send(err);
