@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post("/:clientId",catchUpController.scheduleCatchUp);
 router.put("/:catchUpID",catchUpController.submitCatchUp);
+router.put("/:id",catchUpController.getCatchUpSummary);
 
 module.exports = router;
