@@ -34,7 +34,11 @@ const CatchUp = sequelize.define("CatchUp",{
     Rating:{
         type: Sequelize.INTEGER,
         allowNull: true,
-    }
+    },
+    Week:{
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
 },{
     tableName: 'ClientCatchUp',
     timestamps: false,
