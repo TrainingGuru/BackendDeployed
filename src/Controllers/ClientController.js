@@ -206,7 +206,6 @@ module.exports = {
     registerClient,
     getClientNutrition,
     getAllClientsAndNutritionForTrainer,
-
     getOneClientsNotes,
     getStepsGoal
 }
