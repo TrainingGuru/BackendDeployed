@@ -67,7 +67,7 @@ function NewCheckIn(email,name,date,time) {
     })
 }
 
-function NewCheckIn(email,name,rating,notes) {
+function CatchUpFeedback(email,name,rating,notes) {
     emailAPI.setApiKey(process.env.SENDGRID_API_KEY)
 
     emailAPI.send({
@@ -92,5 +92,6 @@ function NewCheckIn(email,name,rating,notes) {
 module.exports = {
     NewWorkoutAssignedEmail,
     NewClientRegisterEmail,
-    NewCheckIn
+    NewCheckIn,
+    CatchUpFeedback
 }
