@@ -1,5 +1,6 @@
-const Nutrition = require("../Models/NutritionModel")
+const Nutrition = require("../Models/NutritionModel");
 const Client = require("../Models/ClientModel");
+const NutritionHistory = require("../Models/NutritionHistoryModel")
 
 const updateCaloriesTotalTarget = async (req,res) =>{
     let clientFromDB = await Client.findOne({
@@ -135,11 +136,27 @@ const updateClientIntake = async (req, res) => {
             let boundary = (nutrition.TotalCalories /100) * 5;
             let lowerBoundary = nutrition.TotalCalories - boundary;
             let uperBoundary = nutrition.TotalCalories + boundary;
-            console.log(lowerBoundary);
-            console.log(uperBoundary);
+
 
             if(req.body.CaloriesIntake < uperBoundary && req.body.CaloriesIntake > lowerBoundary){
-                console.log("Hit")
+                let todayDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+                let nutritionHistory = await NutritionHistory.findOne({
+                    where : {
+                        ClientID : req.params.id,
+                        Date : todayDate,
+                    }
+                });
+
+                if(nutritionHistory == null){
+                    let newNutritionHistory = {
+                        ClientID : req.params.id,
+                        Date : todayDate,
+                        CaloriesHit : 1
+                    }
+
+                }else{
+                    console.log("Update Old One");
+                }
             }
             else{
                 console.log("Not Hit")
