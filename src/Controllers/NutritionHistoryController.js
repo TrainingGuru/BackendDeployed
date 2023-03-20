@@ -8,7 +8,7 @@ const getCalorieHistory = async (req,res) =>{
             ClientID : req.params.id
         },
         order: [
-            ['Date','ASC'],
+            ['Date','DESC'],
         ],
         attributes : ['Date','CaloriesHit']
     });
