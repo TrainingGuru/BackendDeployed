@@ -153,6 +153,7 @@ const updateClientIntake = async (req, res) => {
                         Date : todayDate,
                         CaloriesHit : 1
                     }
+                    NutritionHistory.create(newNutritionHistory);
 
                 }else{
                     console.log("Update Old One");
