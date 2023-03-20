@@ -7,7 +7,9 @@ const SendEmail = require("../Utilities/EmailSender");
 
 
 
+
 const getAllClients = async (req,res) =>{
+
     let clients = await Client.findAll()
     if(clients.length < 1){
         res.status(404)
@@ -175,6 +177,27 @@ const getOneClientsNotes  = async (req,res) => {
     }
 }
 
+const getStepsGoal = async (req,res) =>{
+    let client = await Client.findOne({where : {
+            ClientID : req.params.id
+        }})
+
+    if(client.NutritionID != null){
+        let nutritionValue = await Nutrition.findOne({
+            where : {
+                NutritionID : client.NutritionID
+            },
+            attributes : ['StepsGoal']
+        });
+
+        res.status(200).json(nutritionValue);
+    }
+    else{
+        res.status(404).json("No Nutrition Plan Found")
+    }
+
+}
+
 
 
 module.exports = {
@@ -183,8 +206,8 @@ module.exports = {
     registerClient,
     getClientNutrition,
     getAllClientsAndNutritionForTrainer,
-    getOneClientsNotes
 
+    getOneClientsNotes,
+    getStepsGoal
 }
-
 
