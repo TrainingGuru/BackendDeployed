@@ -67,6 +67,28 @@ function NewCheckIn(email,name,date,time) {
     })
 }
 
+function NewCheckIn(email,name,rating,notes) {
+    emailAPI.setApiKey(process.env.SENDGRID_API_KEY)
+
+    emailAPI.send({
+        to: {
+            email: email,
+            name: name
+        },
+        from:{
+            email: process.env.APP_EMAIL
+        },
+        templateId: "d-bd1c0305e3214755b2fd9c74d988ecb7",
+        dynamicTemplateData: {
+            name: name,
+            rating: rating,
+            notes: notes,
+        }
+    }).then(() => {
+        console.log("Email Sent")
+    })
+}
+
 module.exports = {
     NewWorkoutAssignedEmail,
     NewClientRegisterEmail,
