@@ -11,5 +11,6 @@ router.put("/:id/ProteinTotal",nutritionController.updateProteinTotalTarget);
 router.put("/:id/CarbsTotal",nutritionController.updateCarbsTotalTarget);
 router.put("/:id/Intake",nutritionController.updateClientIntake);
 router.put("/:id/Steps",nutritionController.updateStepsGoal);
+router.get("/:id/CalHistory")
 
 module.exports = router;
