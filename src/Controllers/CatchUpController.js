@@ -67,8 +67,28 @@ const getCatchUpSummary = async (req,res) =>{
     }
 }
 
+const getCatchUpNotes = async (req,res) =>{
+
+    let summary = await CatchUp.findAll({
+        where : {
+            ClientID : req.params.id
+        },
+        order: [
+            ['Date','DESC'],
+        ],
+        attributes : ['Date','Notes','Week']
+    });
+
+    if(summary.length <= 0 || summary == null){
+        return res.status(404).json("No Summary Of Catch ups Found");
+    }else{
+        return res.status(200).json(summary);
+    }
+}
+
 module.exports = {
     scheduleCatchUp,
     submitCatchUp,
-    getCatchUpSummary
+    getCatchUpSummary,
+    getCatchUpNotes
 }
