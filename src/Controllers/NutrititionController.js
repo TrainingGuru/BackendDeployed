@@ -156,11 +156,33 @@ const updateClientIntake = async (req, res) => {
                     NutritionHistory.create(newNutritionHistory);
 
                 }else{
-                    console.log("Update Old One");
+                    nutritionHistory.update({
+                        CaloriesHit : 1
+                    });
                 }
             }
             else{
-                console.log("Not Hit")
+                let todayDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+                let nutritionHistory = await NutritionHistory.findOne({
+                    where : {
+                        ClientID : req.params.id,
+                        Date : todayDate,
+                    }
+                });
+
+                if(nutritionHistory == null){
+                    let newNutritionHistory = {
+                        ClientID : req.params.id,
+                        Date : todayDate,
+                        CaloriesHit : 0
+                    }
+                    NutritionHistory.create(newNutritionHistory);
+
+                }else{
+                    nutritionHistory.update({
+                        CaloriesHit : 0
+                    });
+                }
             }
             return res.status(204).json(nutrition);
         }
