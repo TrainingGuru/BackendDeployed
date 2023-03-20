@@ -132,6 +132,18 @@ const updateClientIntake = async (req, res) => {
                 ProteinIntake: req.body.ProteinIntake,
                 CarbohydratesIntake: req.body.CarbohydratesIntake
             });
+            let boundary = (nutrition.TotalCalories /100) * 5;
+            let lowerBoundary = nutrition.TotalCalories - boundary;
+            let uperBoundary = nutrition.TotalCalories + boundary;
+            console.log(lowerBoundary);
+            console.log(uperBoundary);
+
+            if(req.body.CaloriesIntake < uperBoundary && req.body.CaloriesIntake > lowerBoundary){
+                console.log("Hit")
+            }
+            else{
+                console.log("Not Hit")
+            }
             return res.status(204).json(nutrition);
         }
         else{
