@@ -39,7 +39,8 @@ const submitCatchUp = async (req, res) => {
        else{
             recordToUpdate.update({
                 Notes : req.body.Notes,
-                Rating : req.body.Rating
+                Rating : req.body.Rating,
+                Week: req.body.Week
             });
             res.status(201).json("CatchUp Submitted");
         }
