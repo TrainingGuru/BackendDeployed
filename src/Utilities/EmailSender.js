@@ -67,7 +67,11 @@ function NewCheckIn(email,name,date,time) {
     })
 }
 
-function CatchUpFeedback(email,name,rating,notes) {
+function CatchUpFeedback(clientID,rating,notes) {
+
+    let name = "";
+    let email = "";
+
     emailAPI.setApiKey(process.env.SENDGRID_API_KEY)
 
     emailAPI.send({

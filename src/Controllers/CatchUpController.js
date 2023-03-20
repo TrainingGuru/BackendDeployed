@@ -33,6 +33,8 @@ const submitCatchUp = async (req, res) => {
             id : req.params.catchUpID
         }
     }).then(recordToUpdate => {
+
+
         if(!recordToUpdate)
             res.status(404).json("No Catchup Meeting Found")
 
@@ -42,6 +44,7 @@ const submitCatchUp = async (req, res) => {
                 Rating : req.body.Rating,
                 Week: req.body.Week
             });
+            SendEmail.CatchUpFeedback(recordToUpdate.ClientID,req.body.Rating,req.body.Notes);
             res.status(201).json("CatchUp Submitted");
         }
 
