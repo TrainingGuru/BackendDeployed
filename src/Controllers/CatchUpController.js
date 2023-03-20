@@ -33,21 +33,66 @@ const submitCatchUp = async (req, res) => {
             id : req.params.catchUpID
         }
     }).then(recordToUpdate => {
+
+
         if(!recordToUpdate)
             res.status(404).json("No Catchup Meeting Found")
 
        else{
             recordToUpdate.update({
                 Notes : req.body.Notes,
-                Rating : req.body.Rating
+                Rating : req.body.Rating,
+                Week: req.body.Week
             });
+            SendEmail.CatchUpFeedback(recordToUpdate.ClientID,req.body.Rating,req.body.Notes);
+            console.log(recordToUpdate.ClientID)
             res.status(201).json("CatchUp Submitted");
         }
 
     })
 }
 
+const getCatchUpSummary = async (req,res) =>{
+
+    let summary = await CatchUp.findAll({
+        where : {
+            ClientID : req.params.id
+        },
+        order: [
+            ['Date','DESC'],
+        ],
+        attributes : ['Date','Rating','Week']
+    });
+
+    if(summary.length <= 0 || summary == null){
+        return res.status(404).json("No Summary Of Catch ups Found");
+    }else{
+        return res.status(200).json(summary);
+    }
+}
+
+const getCatchUpNotes = async (req,res) =>{
+
+    let summary = await CatchUp.findAll({
+        where : {
+            ClientID : req.params.id
+        },
+        order: [
+            ['Date','DESC'],
+        ],
+        attributes : ['Date','Notes','Week']
+    });
+
+    if(summary.length <= 0 || summary == null){
+        return res.status(404).json("No Summary Of Catch ups Found");
+    }else{
+        return res.status(200).json(summary);
+    }
+}
+
 module.exports = {
     scheduleCatchUp,
-    submitCatchUp
+    submitCatchUp,
+    getCatchUpSummary,
+    getCatchUpNotes
 }
