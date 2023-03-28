@@ -146,7 +146,7 @@ const getUpComingMeetingForTrainer = async (req,res) =>{
     let id = req.params.id;
 
     CatchUp.findAll({
-        attributes:['Date','Time'],
+        attributes:['id','Date','Time'],
         order: [
             ['Date','ASC'],
             ['Time','ASC']

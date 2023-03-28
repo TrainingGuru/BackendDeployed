@@ -22,7 +22,7 @@ const Exercise = sequelize.define("Exercise",{
     },
     Instructions:{
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     }
 },{
     tableName: 'Exercise',
