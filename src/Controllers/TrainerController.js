@@ -7,7 +7,7 @@ const ClientWorkOut = require("../Models/ClientWorkoutModel");
 const WorkOuts = require("../Models/TrainerWorkoutsModel");
 const CatchUp = require("../Models/CatchUpModel");
 
-//TODO:: VALIDATION in phase two
+
 //GetAllTrainer
 const getAllTrainers = async (req,res) =>{
     let trainers = await Trainer.findAll()
@@ -22,7 +22,6 @@ const getAllTrainers = async (req,res) =>{
 }
 
 const registerTrainer = async (req, res) => {
-//TODO:: Hash Password, Error handling (Catch), Add account to db,
 // https://www.promisejs.org/
 
 
