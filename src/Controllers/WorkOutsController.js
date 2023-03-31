@@ -108,7 +108,8 @@ const CompleteAWorkOut = async (req,res) =>{
         }else{
             recordToUpdate.update({
                 Notes : req.body.Notes,
-                Completed : 1
+                Completed : 1,
+                TotalWeightLifted: req.body.TotalWeightLifted //TODO:: Get conor to add that to end point he send
             });
             res.status(201).json("Workout Completed");
         }

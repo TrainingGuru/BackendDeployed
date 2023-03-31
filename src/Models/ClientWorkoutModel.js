@@ -42,6 +42,10 @@ const ClientWorkout = sequelize.define("ClientWorkout",{
     Completed:{
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    TotalWeightLifted:{
+        type: Sequelize.INTEGER,
+        allowNull: true,
     }
 },{
     tableName: 'ClientWorkout',
