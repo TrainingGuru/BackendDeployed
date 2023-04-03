@@ -31,6 +31,7 @@ const AddExercises = async (TrainerWorkoutid,Exercises) => {
         }
         AddExerciseToWorkout(exerciseID,TrainerWorkoutid,sets,reps);
     }
+    console.log("Done Creating Workout")
 }
 
 const AddExerciseToWorkout = async (exerciseID,TrainerWorkoutid,Sets,Reps) => {
