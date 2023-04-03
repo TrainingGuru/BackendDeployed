@@ -179,6 +179,10 @@ const getNotesForOneClientWorkout = async (req,res) =>
 
 const CreateAWorkout = async (req,res) => {
 
+    let newWorkout = await WorkOuts.create({
+        TrainerID : req.body.TrainerID,
+        WorkoutName : req.body.WorkoutName
+    })
 }
 
 
