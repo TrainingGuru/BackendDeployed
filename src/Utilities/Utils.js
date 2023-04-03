@@ -13,7 +13,6 @@ const AddExercises = async (TrainerWorkoutid,Exercises) => {
                 }
             }
         })
-
         console.log(DbExercise);
 
     }
