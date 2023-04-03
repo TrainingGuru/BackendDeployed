@@ -18,3 +18,7 @@ const AddExercises = async (TrainerWorkoutid,Exercises) => {
 
     }
 }
+
+module.exports = {
+    AddExercises
+}

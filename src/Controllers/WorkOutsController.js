@@ -184,6 +184,8 @@ const CreateAWorkout = async (req,res) => {
         TrainerID : req.body.TrainerID,
         WorkoutName : req.body.WorkoutName
     })
+
+
 }
 
 
