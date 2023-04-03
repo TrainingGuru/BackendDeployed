@@ -177,6 +177,10 @@ const getNotesForOneClientWorkout = async (req,res) =>
     }
 }
 
+const CreateAWorkout = async (req,res) => {
+
+}
+
 
 
 module.exports = {
@@ -188,5 +192,6 @@ module.exports = {
     GetAllWorkOutsForClient,
     AssignClientAWorkout,
     getAllWorksForTrainer,
-    getNotesForOneClientWorkout
+    getNotesForOneClientWorkout,
+    CreateAWorkout
 }
