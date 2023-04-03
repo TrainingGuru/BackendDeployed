@@ -10,26 +10,26 @@ const AddExercises = async (TrainerWorkoutid,Exercises) => {
         let DbExercise = await Exercise.findOne({
             where : {
                 Name : {
-                    [Op.like] : Exercises[i]
+                    [Op.like] : Exercises[i].ExName
                 }
             }
         })
         let exerciseID;
+        let sets = Exercises[i].Sets;
+        let reps = Exercises[i].Reps;
+
         if(DbExercise != null){
             exerciseID = DbExercise.ExerciseID
-        }else{
+        }
+        else{
             let newExercise = await Exercise.create({
-                Name : Exercises[i],
+                Name : Exercises[i].ExName,
                 Type : "Weight"
             })
 
             exerciseID = newExercise.ExerciseID
-
         }
-
-
-
-
+        AddExerciseToWorkout(exerciseID,TrainerWorkoutid,sets,reps);
     }
 }
 

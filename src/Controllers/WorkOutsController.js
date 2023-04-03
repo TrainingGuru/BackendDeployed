@@ -7,6 +7,7 @@ const Exercises = require("../Models/ExerciseModel");
 const Client = require("../Models/ClientModel");
 const SendEmail = require("../Utilities/EmailSender");
 const Utils = require("../Utilities/Utils");
+const Console = require("console");
 
 
 const WorkOutWeeks = async (req,res) => {
@@ -180,18 +181,19 @@ const getNotesForOneClientWorkout = async (req,res) =>
 
 const CreateAWorkout = async (req,res) => {
 
-    let newWorkout = await WorkOuts.create({
-        TrainerID : req.body.TrainerID,
-        WorkoutName : req.body.WorkoutName
-    })
-
-    Utils.AddExercises(newWorkout.id,req.body.Exercises);
-
-    if(newWorkout != null){
-        return res.status(200).json(newWorkout)
-    }else{
-        return res.status(400).json("error")
-    }
+    // let newWorkout = await WorkOuts.create({
+    //     TrainerID : req.body.TrainerID,
+    //     WorkoutName : req.body.WorkoutName
+    // })
+    //
+    // Utils.AddExercises(newWorkout.id,req.body.Exercises);
+    //
+    // if(newWorkout != null){
+    //     return res.status(200).json(newWorkout)
+    // }else{
+    //     return res.status(400).json("error")
+    // }
+    //Console.log(req.body.Exercises[1].ExName)
 
 
 }
