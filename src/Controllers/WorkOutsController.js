@@ -181,19 +181,18 @@ const getNotesForOneClientWorkout = async (req,res) =>
 
 const CreateAWorkout = async (req,res) => {
 
-    // let newWorkout = await WorkOuts.create({
-    //     TrainerID : req.body.TrainerID,
-    //     WorkoutName : req.body.WorkoutName
-    // })
-    //
-    // Utils.AddExercises(newWorkout.id,req.body.Exercises);
-    //
-    // if(newWorkout != null){
-    //     return res.status(200).json(newWorkout)
-    // }else{
-    //     return res.status(400).json("error")
-    // }
-    //Console.log(req.body.Exercises[1].ExName)
+    let newWorkout = await WorkOuts.create({
+        TrainerID : req.body.TrainerID,
+        WorkoutName : req.body.WorkoutName
+    })
+
+    if(newWorkout != null){
+        Utils.AddExercises(newWorkout.id,req.body.Exercises);
+        return res.status(200).json(newWorkout)
+    }else{
+        return res.status(400).json("Error Couldnt Create Workout")
+    }
+
 
 
 }
