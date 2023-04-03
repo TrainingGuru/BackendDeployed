@@ -187,7 +187,7 @@ const CreateAWorkout = async (req,res) => {
 
     Utils.AddExercises(newWorkout.id,req.body.Exercises);
 
-    if(newWorkout == null){
+    if(newWorkout != null){
         return res.status(200).json(newWorkout)
     }else{
         return res.status(400).json("error")
