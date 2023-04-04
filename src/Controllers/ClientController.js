@@ -212,6 +212,20 @@ const getClientName = async (req,res) =>{
         res.status(404).json("No Client Found")
     }
 }
+const getClientFitbitToke = async (req,res) =>{
+    let client = await Client.findOne({where : {
+            ClientID : req.params.id
+        },
+        attributes : ['FitbitToken','TokenDate']
+    })
+
+    if(client != null || client.length > 0){
+        res.status(200).json(client);
+    }
+    else{
+        res.status(404).json("No Client Found")
+    }
+}
 
 
 
@@ -223,6 +237,6 @@ module.exports = {
     getAllClientsAndNutritionForTrainer,
     getOneClientsNotes,
     getStepsGoal,
-    getClientName
+    getClientName,
 }
 
