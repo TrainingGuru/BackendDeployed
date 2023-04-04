@@ -233,10 +233,9 @@ const UpdateClientToken = async (req, res) => {
     let todayDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
     Client.findOne({
         where: {
-            id : req.params.id
+            ClientID : req.params.id
         }
     }).then(recordToUpdate => {
-
 
         if(!recordToUpdate)
             res.status(404).json("No Client Found")
@@ -246,8 +245,6 @@ const UpdateClientToken = async (req, res) => {
                 FitbitToken : req.body.FitbitToken,
                 TokenDate : todayDate
             });
-
-            console.log(recordToUpdate.ClientID)
             res.status(201).json("Token Updated");
         }
 
