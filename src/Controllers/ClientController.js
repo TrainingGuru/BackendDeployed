@@ -265,6 +265,7 @@ module.exports = {
     getOneClientsNotes,
     getStepsGoal,
     getClientName,
-    getClientFitbitToke
+    getClientFitbitToke,
+    UpdateClientToken
 }
 
