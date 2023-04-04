@@ -65,4 +65,5 @@ const getClientCurrentWeight = async (req, res) => {
 module.exports = {
     addClientWeight,
     getAllRecordsOfAClientWeight,
+    getClientCurrentWeight
 }
