@@ -13,6 +13,7 @@ router.get("/Trainer/:trainerID/NutritionValues",clientController.getAllClientsA
 router.get("/:id",clientController.getOneClientsNotes)
 router.get("/:id/StepGoal",clientController.getStepsGoal)
 router.get("/:id/Name",clientController.getClientName)
+router.get("/:id/FitbitToken",clientController.getClientFitbitToke)
 
 
 module.exports = router;
