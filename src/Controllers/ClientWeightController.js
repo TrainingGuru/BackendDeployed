@@ -41,7 +41,29 @@ const getAllRecordsOfAClientWeight = async (req, res) => {
 
 }
 
+const getClientCurrentWeight = async (req, res) => {
+
+    let clientWeight = await ClientWeight.findAll({
+        where : {
+            ClientID : req.params.clientId
+        },
+        attributes : ['Weight'],
+        order: [
+            ['Date','DESC'],
+        ],
+        limit : 1,
+    });
+
+    if(clientWeight.length <= 0 || null){
+        return res.status(404).json("No Weight Records for this client found")
+    }else{
+        return res.status(200).json(clientWeight)
+    }
+
+}
+
 module.exports = {
     addClientWeight,
     getAllRecordsOfAClientWeight,
+    getClientCurrentWeight
 }
