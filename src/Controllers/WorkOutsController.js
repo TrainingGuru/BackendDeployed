@@ -199,6 +199,7 @@ const TotalWeightLifted = async (req,res) => {
 
     let TotalWeight = await ClientWorkOut.findAll({
         where : {
+            ClientID: req.params.id,
             Week : req.params.wk
         },
         attributes : [[Sequelize.fn('sum',Sequelize.col('TotalWeightLifted')),'Total']]
