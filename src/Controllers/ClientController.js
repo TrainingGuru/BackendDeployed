@@ -3,6 +3,7 @@ const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
 const SendEmail = require("../Utilities/EmailSender");
+const CatchUp = require("../Models/CatchUpModel");
 
 
 
@@ -225,6 +226,32 @@ const getClientFitbitToke = async (req,res) =>{
     else{
         res.status(404).json("No Client Found")
     }
+}
+
+const UpdateClientToken = async (req, res) => {
+
+    let todayDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    Client.findOne({
+        where: {
+            id : req.params.id
+        }
+    }).then(recordToUpdate => {
+
+
+        if(!recordToUpdate)
+            res.status(404).json("No Client Found")
+
+        else{
+            recordToUpdate.update({
+                FitbitToken : req.body.FitbitToken,
+                TokenDate : todayDate
+            });
+
+            console.log(recordToUpdate.ClientID)
+            res.status(201).json("Token Updated");
+        }
+
+    })
 }
 
 
