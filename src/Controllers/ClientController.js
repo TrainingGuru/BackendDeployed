@@ -201,10 +201,12 @@ const getStepsGoal = async (req,res) =>{
 const getClientName = async (req,res) =>{
     let client = await Client.findOne({where : {
             ClientID : req.params.id
-        }})
+        },
+        attributes : ['Name']
+    })
 
     if(client != null || client.length > 0){
-        res.status(200).json(client.name);
+        res.status(200).json(client);
     }
     else{
         res.status(404).json("No Client Found")
