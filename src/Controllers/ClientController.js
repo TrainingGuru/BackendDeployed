@@ -238,5 +238,6 @@ module.exports = {
     getOneClientsNotes,
     getStepsGoal,
     getClientName,
+    getClientFitbitToke
 }
 
