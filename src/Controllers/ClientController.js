@@ -198,6 +198,19 @@ const getStepsGoal = async (req,res) =>{
 
 }
 
+const getClientName = async (req,res) =>{
+    let client = await Client.findOne({where : {
+            ClientID : req.params.id
+        }})
+
+    if(client != null || client.length > 0){
+        res.status(200).json(client.name);
+    }
+    else{
+        res.status(404).json("No Client Found")
+    }
+}
+
 
 
 module.exports = {
@@ -207,6 +220,7 @@ module.exports = {
     getClientNutrition,
     getAllClientsAndNutritionForTrainer,
     getOneClientsNotes,
-    getStepsGoal
+    getStepsGoal,
+    getClientName
 }
 
