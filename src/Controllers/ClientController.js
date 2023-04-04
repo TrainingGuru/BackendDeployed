@@ -3,6 +3,7 @@ const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
 const SendEmail = require("../Utilities/EmailSender");
+const CatchUp = require("../Models/CatchUpModel");
 
 
 
@@ -198,6 +199,58 @@ const getStepsGoal = async (req,res) =>{
 
 }
 
+const getClientName = async (req,res) =>{
+    let client = await Client.findOne({where : {
+            ClientID : req.params.id
+        },
+        attributes : ['Name']
+    })
+
+    if(client != null || client.length > 0){
+        res.status(200).json(client);
+    }
+    else{
+        res.status(404).json("No Client Found")
+    }
+}
+const getClientFitbitToke = async (req,res) =>{
+    let client = await Client.findOne({where : {
+            ClientID : req.params.id
+        },
+        attributes : ['FitbitToken','TokenDate']
+    })
+
+    if(client != null || client.length > 0){
+        res.status(200).json(client);
+    }
+    else{
+        res.status(404).json("No Client Found")
+    }
+}
+
+const UpdateClientToken = async (req, res) => {
+
+    let todayDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    Client.findOne({
+        where: {
+            ClientID : req.params.id
+        }
+    }).then(recordToUpdate => {
+
+        if(!recordToUpdate)
+            res.status(404).json("No Client Found")
+
+        else{
+            recordToUpdate.update({
+                FitbitToken : req.body.FitbitToken,
+                TokenDate : todayDate
+            });
+            res.status(201).json("Token Updated");
+        }
+
+    })
+}
+
 
 
 module.exports = {
@@ -207,6 +260,9 @@ module.exports = {
     getClientNutrition,
     getAllClientsAndNutritionForTrainer,
     getOneClientsNotes,
-    getStepsGoal
+    getStepsGoal,
+    getClientName,
+    getClientFitbitToke,
+    UpdateClientToken
 }
 

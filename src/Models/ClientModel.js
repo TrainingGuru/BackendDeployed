@@ -42,6 +42,14 @@ const Client = sequelize.define('Client',{
                 model: 'Nutrition',
                 key: 'NutritionID'
             }
+        },
+        FitbitToken:{
+            type: Sequelize.STRING,
+            allowNull: true,
+        },
+        TokenDate : {
+            type: Sequelize.DATEONLY,
+            allowNull: true
         }
     },
     {
