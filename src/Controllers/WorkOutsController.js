@@ -193,9 +193,22 @@ const CreateAWorkout = async (req,res) => {
     }else{
         return res.status(400).json("Error Couldnt Create Workout")
     }
+}
 
+const TotalWeightLifted = async (req,res) => {
 
+    let TotalWeight = await ClientWorkOut.findAll({
+        where : {
+            Week : req.params.wk
+        },
+        attributes : [[Sequelize.fn('sum',Sequelize.col('TotalWeightLifted')),'Total']]
+    })
 
+    if(TotalWeight.length <=0 || TotalWeight == null){
+        return res.status(404).json("No Weight Found")
+    }else{
+        return res.status(200).json(TotalWeight)
+    }
 }
 
 
