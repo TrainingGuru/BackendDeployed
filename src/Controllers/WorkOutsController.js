@@ -223,5 +223,6 @@ module.exports = {
     AssignClientAWorkout,
     getAllWorksForTrainer,
     getNotesForOneClientWorkout,
-    CreateAWorkout
+    CreateAWorkout,
+    TotalWeightLifted
 }
