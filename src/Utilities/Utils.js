@@ -24,7 +24,7 @@ const AddExercises = async (TrainerWorkoutid,Exercises) => {
         else{
             let newExercise = await Exercise.create({
                 Name : Exercises[i].ExName,
-                Type : "Weight"
+                Type : "Weights"
             })
 
             exerciseID = newExercise.ExerciseID
