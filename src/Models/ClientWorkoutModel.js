@@ -36,7 +36,7 @@ const ClientWorkout = sequelize.define("ClientWorkout",{
         allowNull: false,
     },
     Notes:{
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: true,
     },
     Completed:{
