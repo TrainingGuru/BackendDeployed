@@ -53,7 +53,7 @@ const GetAllWorkOutsForClient = async (req,res) => {
         where : {
             ClientID : req.params.id
         },
-        attributes : ['ClientWorkoutID','Date','Notes','Completed'],
+        attributes : ['ClientWorkoutID','Date','Notes','Completed','Week'],
         include: [
             {
                 model: WorkOuts,
