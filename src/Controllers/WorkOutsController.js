@@ -7,6 +7,7 @@ const Exercises = require("../Models/ExerciseModel");
 const Client = require("../Models/ClientModel");
 const SendEmail = require("../Utilities/EmailSender");
 const Utils = require("../Utilities/Utils");
+const Goals = require("../Models/GoalsModel");
 //const Console = require("console");
 
 
@@ -212,6 +213,21 @@ const TotalWeightLifted = async (req,res) => {
     }
 }
 
+const DeleteWorkout = async (req, res) => {
+    ClientWorkOut.findOne({
+        where : {
+            ClientWorkoutID : req.body.ClientWorkoutID,
+        }
+    }).then(workoutToDelete => {
+        if(!workoutToDelete){
+            res.status(404).json("No Client Goal Found")
+        }else{
+            workoutToDelete.destroy();
+            res.status(204);
+        }
+    })
+}
+
 
 
 module.exports = {
@@ -225,5 +241,6 @@ module.exports = {
     getAllWorksForTrainer,
     getNotesForOneClientWorkout,
     CreateAWorkout,
-    TotalWeightLifted
+    TotalWeightLifted,
+    DeleteWorkout
 }
