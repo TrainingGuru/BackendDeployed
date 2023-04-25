@@ -264,9 +264,9 @@ const UpdateClientDiscription = async (req, res) => {
 
         else{
             recordToUpdate.update({
-                Notes : req.body.Discription,
+                Notes : req.body.Description,
             });
-            res.status(201).json("Discription Updated");
+            res.status(201).json("Description Updated");
         }
 
     })
