@@ -251,6 +251,27 @@ const UpdateClientToken = async (req, res) => {
     })
 }
 
+const UpdateClientDiscription = async (req, res) => {
+
+    Client.findOne({
+        where: {
+            ClientID : req.params.id
+        }
+    }).then(recordToUpdate => {
+
+        if(!recordToUpdate)
+            res.status(404).json("No Client Found")
+
+        else{
+            recordToUpdate.update({
+                Notes : req.body.Discription,
+            });
+            res.status(201).json("Discription Updated");
+        }
+
+    })
+}
+
 
 
 module.exports = {
@@ -263,6 +284,7 @@ module.exports = {
     getStepsGoal,
     getClientName,
     getClientFitbitToke,
-    UpdateClientToken
+    UpdateClientToken,
+    UpdateClientDiscription
 }
 

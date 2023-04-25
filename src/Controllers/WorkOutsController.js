@@ -216,14 +216,14 @@ const TotalWeightLifted = async (req,res) => {
 const DeleteWorkout = async (req, res) => {
     ClientWorkOut.findOne({
         where : {
-            ClientWorkoutID : req.body.ClientWorkoutID,
+            ClientWorkoutID : req.params.id,
         }
     }).then(workoutToDelete => {
         if(!workoutToDelete){
-            res.status(404).json("No Client Goal Found")
+            res.status(404).json("No Client Workout Found")
         }else{
             workoutToDelete.destroy();
-            res.status(204);
+            return res.status(204);
         }
     })
 }

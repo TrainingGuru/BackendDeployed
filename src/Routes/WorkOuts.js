@@ -13,7 +13,7 @@ router.get("/:id/AllWorkouts",workoutController.GetAllWorkOutsForClient);
 router.post("/:id/AssignWorkout",workoutController.AssignClientAWorkout);
 router.get("/WorkoutNote/:id",workoutController.getNotesForOneClientWorkout); //ClientWorkoutID
 router.get("/:id/WeightLifted/:wk",workoutController.TotalWeightLifted);
-router.delete("/Workout/Delete",workoutController.DeleteWorkout); //..../Client/Workout/Delete
+router.delete("/Workout/:id",workoutController.DeleteWorkout); //..../Client/Workout/workout ID
 
 
 
