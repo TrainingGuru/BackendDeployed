@@ -20,7 +20,7 @@ const scheduleCatchUp = async (req,res) =>{
         }
         SendEmail.NewCheckIn(client.Email,client.Name,req.body.Date,req.body.Time);
         CatchUp.create(catchUpMeeting).then((meetingToAdd) =>
-            res.status(201).send(meetingToAdd)).catch((err) => {
+            res.status(201).json(meetingToAdd)).catch((err) => {
             res.status(400).send(err);
         });
     }
