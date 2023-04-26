@@ -3,6 +3,7 @@ const PORT = 8080
 const express = require('express')
 const app = express()
 const database = require("./Config/DatabaseConfig.js");
+const cors = require("cors");
 
 //routes
 const trainerRoute = require("./Routes/Trainer.js");
@@ -40,6 +41,7 @@ app.use("/PB",pbRoute);
 app.use("/Nutrition",nutritionRoute);
 app.use("/ClientWeight",clientWeightRoute);
 app.use("/CatchUp",catchUpRoute);
+app.use(cors());
 
 
 app.get('/Sync', function(req, res) {
