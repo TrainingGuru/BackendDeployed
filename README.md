@@ -23,3 +23,9 @@ src file - Contains the project code
 - Config: Code for connection to database etc
 - Routes: Endpoints code - different files for each endpoint e.g Trainers.js = /Trainers endpoint
 - Models: Database data schema for sending data to Database
+
+To run the Application 
+- Download the Resopitory 
+- Open The Code
+- Use npm install
+- Use command npm run start:backend
