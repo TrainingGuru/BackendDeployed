@@ -96,11 +96,11 @@ const DeleteCatchup = async (req,res) => {
         where : {
             id : req.params.id,
         }
-    }).then(goalToDelete => {
-        if(!goalToDelete){
-            res.status(404).json("No Client Goal Found")
+    }).then(MeetingDelete => {
+        if(!MeetingDelete){
+            res.status(404).json("No Catchup Meeting Found")
         }else{
-            goalToDelete.destroy();
+            MeetingDelete.destroy();
             res.status(204);
         }
     })
