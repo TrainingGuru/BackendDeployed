@@ -11,5 +11,6 @@ router.post("/Login",trainerController.loginTrainer)
 router.get("/:id/Clients",trainerController.getAllClientsForTrainer)
 router.get("/:id/UpComingWorkouts",trainerController.GetUpcomingWorkOut)
 router.get("/:id/UpcomingMeetings",trainerController.getUpComingMeetingForTrainer)
+router.get("/:id",trainerController.getOneTrainerByID)
 
 module.exports = router;
