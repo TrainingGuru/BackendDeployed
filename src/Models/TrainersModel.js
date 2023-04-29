@@ -19,6 +19,10 @@ const Trainer = sequelize.define('Trainer',{
     Password:{
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    Description:{
+        type: Sequelize.STRING,
+        allowNull: true,
     }
 },
 {
