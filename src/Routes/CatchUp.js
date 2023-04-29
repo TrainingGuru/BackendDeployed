@@ -8,5 +8,6 @@ router.post("/:clientId",catchUpController.scheduleCatchUp);
 router.put("/:catchUpID",catchUpController.submitCatchUp);
 router.get("/:id",catchUpController.getCatchUpSummary);
 router.get("/:id/Notes",catchUpController.getCatchUpNotes);
+router.delete("/:id",catchUpController.DeleteCatchup);
 
 module.exports = router;

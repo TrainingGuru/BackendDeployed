@@ -1,6 +1,7 @@
 const CatchUp = require("../Models/CatchUpModel");
 const Client = require("../Models/ClientModel");
 const SendEmail = require("../Utilities/EmailSender");
+const Goals = require("../Models/GoalsModel");
 
 const scheduleCatchUp = async (req,res) =>{
     let client = await Client.findOne({
@@ -90,9 +91,26 @@ const getCatchUpNotes = async (req,res) =>{
     }
 }
 
+const DeleteCatchup = async (req,res) => {
+    CatchUp.findOne({
+        where : {
+            id : req.params.id,
+        }
+    }).then(MeetingDelete => {
+        if(!MeetingDelete){
+            res.status(404).json("No Catchup Meeting Found")
+        }else{
+            MeetingDelete.destroy();
+            res.status(204);
+        }
+    })
+
+}
+
 module.exports = {
     scheduleCatchUp,
     submitCatchUp,
     getCatchUpSummary,
-    getCatchUpNotes
+    getCatchUpNotes,
+    DeleteCatchup
 }
