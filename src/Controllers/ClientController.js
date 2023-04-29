@@ -3,7 +3,6 @@ const Trainer = require("../Models/TrainersModel");
 const Nutrition = require("../Models/NutritionModel");
 const bcrypt = require("bcryptjs");
 const SendEmail = require("../Utilities/EmailSender");
-const CatchUp = require("../Models/CatchUpModel");
 
 
 
@@ -271,6 +270,28 @@ const UpdateClientDiscription = async (req, res) => {
 
     })
 }
+const UpdateClientDetails = async (req, res) => {
+
+
+    Client.findOne({
+        where: {
+            ClientID : req.params.id
+        }
+    }).then(recordToUpdate => {
+
+        if(!recordToUpdate)
+            res.status(404).json("No Client Found")
+
+        else{
+            recordToUpdate.update({
+                Name : req.body.Name,
+                Email : req.body.Email
+            });
+            res.status(201).json("Client Updated");
+        }
+
+    })
+}
 
 
 
@@ -285,6 +306,7 @@ module.exports = {
     getClientName,
     getClientFitbitToke,
     UpdateClientToken,
-    UpdateClientDiscription
+    UpdateClientDiscription,
+    UpdateClientDetails
 }
 

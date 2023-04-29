@@ -88,7 +88,7 @@ const getAllClientsForTrainer = async (req,res) =>{
         where : {
             TrainerID : id
         },
-        attributes:['ClientID','Name'],
+        attributes:['ClientID','Name','Email'],
         include : [
             {
                 model : CatchUp,

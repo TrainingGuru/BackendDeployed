@@ -16,6 +16,6 @@ router.get("/:id/Name",clientController.getClientName)
 router.get("/:id/FitbitToken",clientController.getClientFitbitToke)
 router.put("/:id/FitbitToken",clientController.UpdateClientToken)
 router.put("/:id/Description",clientController.UpdateClientDiscription)
-
+router.put("/:id/Details",clientController.UpdateClientDetails)
 
 module.exports = router;
