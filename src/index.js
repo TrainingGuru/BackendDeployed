@@ -43,7 +43,6 @@ app.use("/ClientWeight",clientWeightRoute);
 app.use("/CatchUp",catchUpRoute);
 app.use(cors());
 
-
 app.get('/Sync', function(req, res) {
     database.sync({ force: false })
         .then(() => {
@@ -51,9 +50,6 @@ app.get('/Sync', function(req, res) {
             return res.status(200).json("re-sync done!")
         })
 });
-
-
-
 
 // console.log(`Server running at http://${HOSTNAME}:${PORT}`)
 async function testConection(){
@@ -64,10 +60,5 @@ async function testConection(){
         console.error('Unable to connect to the database:', error);
     }
 }
-
 testConection();
-
-
-
-
 app.listen(PORT,() => console.log('Server listening on localhost: '+PORT))
