@@ -172,6 +172,25 @@ const getUpComingMeetingForTrainer = async (req,res) =>{
     })
 }
 
+const getOneTrainerByID  = async (req,res) => {
+
+    let trainer = await Trainer.findOne({
+        where : {
+            TrainerID : req.params.id
+        },
+        attributes : {
+            exclude: ['Password']
+        },
+
+    });
+
+    if(trainer == null || trainer.length <= 0 ){
+        return res.status(404).json(`No Trainer found for ID of  ${req.params.id}`);
+    }else{
+        return res.status(200).json(trainer);
+    }
+}
+
 
 
 module.exports = {
@@ -180,6 +199,7 @@ module.exports = {
     loginTrainer,
     getAllClientsForTrainer,
     GetUpcomingWorkOut,
-    getUpComingMeetingForTrainer
+    getUpComingMeetingForTrainer,
+    getOneTrainerByID
 
 }
