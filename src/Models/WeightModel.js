@@ -22,7 +22,7 @@ const Weight = sequelize.define("Weight",{
         allowNull: false
     },
     Weight:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.DOUBLE,
         allowNull: false,
     },
 },{
