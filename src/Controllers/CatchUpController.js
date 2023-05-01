@@ -26,31 +26,57 @@ const scheduleCatchUp = async (req,res) =>{
         });
     }
 }
-
+// await CatchUp.findOne({
+//     where: {
+//         id : req.params.catchUpID
+//     }
+// }).then(recordToUpdate => {
+//
+//
+//     if(!recordToUpdate)
+//         res.status(404).json("No Catchup Meeting Found")
+//
+//     else{
+//         recordToUpdate.update({
+//             Notes : req.body.Notes,
+//             Rating : req.body.Rating,
+//             Week: req.body.Week
+//         });
+//         SendEmail.CatchUpFeedback(recordToUpdate.ClientID,req.body.Rating,req.body.Notes);
+//         console.log(recordToUpdate.ClientID)
+//         res.status(201).json("CatchUp Submitted");
+//     }
+//
+// })
 const submitCatchUp = async (req, res) => {
 
-    CatchUp.findOne({
+    let catchUpMeeting = await CatchUp.findOne({
         where: {
             id : req.params.catchUpID
         }
-    }).then(recordToUpdate => {
+    })
+    let recordToUpdate = {
+            Notes : req.body.Notes,
+            Rating : req.body.Rating,
+            Week: req.body.Week
+        }
 
-
-        if(!recordToUpdate)
+        if(catchUpMeeting == null || catchUpMeeting.length <=0 ){
             res.status(404).json("No Catchup Meeting Found")
-
-       else{
-            recordToUpdate.update({
+        }else {
+            await CatchUp.update({
                 Notes : req.body.Notes,
                 Rating : req.body.Rating,
                 Week: req.body.Week
+            }, {
+                where : {
+                    id : req.params.catchUpID
+                }
             });
-            SendEmail.CatchUpFeedback(recordToUpdate.ClientID,req.body.Rating,req.body.Notes);
+            SendEmail.CatchUpFeedback(catchUpMeeting.ClientID,req.body.Rating,req.body.Notes);
             console.log(recordToUpdate.ClientID)
             res.status(201).json("CatchUp Submitted");
         }
-
-    })
 }
 
 const getCatchUpSummary = async (req,res) =>{
