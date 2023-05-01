@@ -18,6 +18,7 @@ const scheduleCatchUp = async (req,res) =>{
             ClientID: req.params.clientId,
             Date: req.body.Date,
             Time: req.body.Time,
+            Week: req.body.Week
         }
         SendEmail.NewCheckIn(client.Email,client.Name,req.body.Date,req.body.Time);
         CatchUp.create(catchUpMeeting).then((meetingToAdd) =>
